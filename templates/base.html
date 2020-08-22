@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Favicons -->
+    <link rel="icon" href="https://www.celec.com//wp-content/uploads/2020/02/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://www.celec.com//wp-content/uploads/2020/02/cropped-favicon-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed"
+        href="https://www.celec.com//wp-content/uploads/2020/02/cropped-favicon-180x180.png" />
+    {% include "base/css.html" %}
+    <title> {% block title %} Home {% endblock %} </title>
+
+</head>
+
+<body>
+
+    {% comment %}
+    <!-- <h3 style="float: right; color: rgb(255, 255, 255);">{{  message  }}</h3> -->
+    {% endcomment%}
+    <!--Header starts-->
+    
+    {% url 'dashboard' as dashboard_url %}
+    {% if request.path == dashboard_url %}
+    {% else %}
+    {% include "base/navbar.html" %}
+{% endif %}
+    {% include "base/messages.html" %}
+
+
+    {% block content %}
+
+
+    {% endblock content %}
+
+
+
+    {% include "base/js.html" %}
+    {% comment%}
+    {% include "base/footer.html" %}
+    {% endcomment%}
+
+</body>
+
+</html>
