@@ -91,11 +91,17 @@
 
     </ul>
     {% else %}
-
-
+            <!-- Non register user nav bar -->
+            {% url 'login' as login_url %}
+            {% if request.path == login_url %}
           <li class="nav-item  m-auto w-100" >
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
+          {% else %}
+          <li class="nav-item  m-auto w-100" >
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+          {% endif %}
           {% endif %}
 
   </nav>

@@ -67,6 +67,7 @@ class SignUpView(NextUrlMixin, CreateView):
 
 class UserLoginView(NextUrlMixin, SuccessMessageMixin, LoginView):
     form_class = CustomAuthenticationForm
+    redirect_authenticated_user = True
     # template_name = 'registration/login3.html'
 
 class UserLogoutView(NextUrlMixin, SuccessMessageMixin, LogoutView):
