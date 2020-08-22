@@ -25,7 +25,7 @@ SECRET_KEY = 'lg_(-gv3_jx4)v1(=ixj9cza=#6o-p@j#_xa*3r5iji!c6m3s#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,9 +127,9 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = 'login'
-LOGIN_URL_REDIRECT = '/'
+LOGIN_URL_REDIRECT = '/dashboard/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 # LOGOUT_URL = '/users/login'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = False

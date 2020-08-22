@@ -1,12 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load static %}
 {% block title %}Login{% endblock %}
 {% block content %}
+{% include 'base/navbar.html' %}
 {% if user.is_authenticated %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                    <h3><span>Hi</span> <span style="color: aqua">{{ user.username }}</span></h3>
+                    <h3><span>Hi {{ user.username }}</h3>
                 <span style="font-size: x-large">You are already logged in</span>
 <div class="row"><div class="col-md-12 mt-3">
                 <span>

@@ -3,15 +3,21 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class CustomUser(AbstractUser):
+    
     # email_password = .CharField(db_column='department_name', max_length=45)
+    user_id = models.SmallAutoField(primary_key=True)
     name = models.CharField(
         db_column='name', max_length=45, blank=True, null=True)
-    phone_no_1 = models.PositiveIntegerField(
-        db_column='phone_no_1', blank=True, null=True)
-    phone_no_2 = models.PositiveIntegerField(
-        db_column='phone_no_2', blank=True, null=True)
+    ph_1 = models.PositiveIntegerField(
+        db_column='ph_1', blank=True, null=True)
+    ph_2 = models.PositiveIntegerField(
+        db_column='ph_2', blank=True, null=True)
     user_info_id = models.PositiveSmallIntegerField(
         db_column='user_info_id', blank=True, null=True)
+    department = models.CharField(
+        db_column='department', max_length=45, blank=True, null=True)
+    role = models.CharField(
+        db_column='role', max_length=45, blank=True, null=True)
     # department = models.OneToOneField('Department',
     #     db_column='department', max_length=45, on_delete=models.CASCADE)
     # role = models.ManyToManyField('Role',db_column='role')
@@ -30,7 +36,7 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
-        db_table = 'users'
+        db_table = 'user'
 
 
 # class Department(models.Model):
