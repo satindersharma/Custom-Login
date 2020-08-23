@@ -2,10 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
+
 class CustomUser(AbstractUser):
-    
+
     # email_password = .CharField(db_column='department_name', max_length=45)
     user_id = models.SmallAutoField(primary_key=True)
+    username = models.CharField(
+        db_column='username', max_length=45, unique=True)
     name = models.CharField(
         db_column='name', max_length=45, blank=True, null=True)
     ph_1 = models.PositiveIntegerField(
@@ -72,6 +75,6 @@ class CustomUser(AbstractUser):
 #     id = models.SmallAutoField(primary_key=True)
 #     role = models.ForeignKey(Role, on_delete=models.CASCADE)
 #     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    
+
 #     class Meta:
 #         db_table = "user_role"

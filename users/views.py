@@ -36,14 +36,10 @@ def signup(request):
 
 '''
 
-class LogintTemp1(TemplateView):
+
+class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
-class LogintTemp2(TemplateView):
-    template_name = "registration/login2.html"
-
-class LogintTemp3(TemplateView):
-    template_name = "registration/login3.html"
 
 class SignUpView(NextUrlMixin, CreateView):
     form_class = CustomUserCreationForm
@@ -69,6 +65,7 @@ class UserLoginView(NextUrlMixin, SuccessMessageMixin, LoginView):
     form_class = CustomAuthenticationForm
     redirect_authenticated_user = True
     # template_name = 'registration/login3.html'
+
 
 class UserLogoutView(NextUrlMixin, SuccessMessageMixin, LogoutView):
     pass
