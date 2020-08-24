@@ -129,7 +129,6 @@ input:focus {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
   background-color: #ebebeb;
 }
 
@@ -480,11 +479,6 @@ a.login100-form-btn.register-form-btn:hover {
   display: block;
 }
 
-.container-login100 {
-  /* backdrop-filter: blur(10px);
- */
-}
-
 .footer-element {
   position: absolute;
   bottom: 0;
@@ -505,7 +499,6 @@ a.login100-form-btn.register-form-btn:hover {
 ul.errorlist {
   list-style-type: none;
 }
-
 
 .register100 {
   height: 40px !important;

@@ -12,13 +12,11 @@ class EmailOrUsernameModelBackend(ModelBackend):
             return
         try:
             # user = get_user_model()._default_manager.get_by_natural_key(username)
-            user = get_user_model()._default_manager.filter(
-                Q(**{get_user_model().USERNAME_FIELD: username}
-                  ) | Q(email__iexact=username)
-            )
-            for usr in user:
-                if usr.check_password(password):
-                    return usr
+            user = get_user_model()._default_manager.get(
+                Q(username__iexact=username) | Q(email__iexact=username))
+
+            if user.check_password(password):
+                return user
         except get_user_model().DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a nonexistent user (#20760).
