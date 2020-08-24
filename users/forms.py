@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, UsernameField, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, UsernameField, AuthenticationForm, PasswordResetForm
 from django.core.exceptions import ValidationError
 
 # from .models import CustomUser, GENDER_CHOICES
@@ -170,3 +170,12 @@ class FriendForm(forms.ModelForm):
         fields = ("__all__"
 
 '''
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if not get_user_model().objects.filter(email__iexact=email, is_active=True).exists():
+            msg = _(f"No user registered with the {email} E-Mail address.")
+            self.add_error('email', msg)
+        return email

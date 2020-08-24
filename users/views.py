@@ -5,11 +5,13 @@ from django.views.generic.edit import CreateView, View
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from CelecUserProject.mixins import NextUrlMixin
-from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPasswordResetForm
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.views import LoginView, LogoutView, TemplateView
+from django.contrib.auth.views import LoginView, LogoutView, TemplateView, PasswordResetView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+
+
 '''
 
 192.168.0.221
@@ -69,3 +71,7 @@ class UserLoginView(NextUrlMixin, SuccessMessageMixin, LoginView):
 
 class UserLogoutView(NextUrlMixin, SuccessMessageMixin, LogoutView):
     pass
+
+
+class CustomPasswordResetView(PasswordResetView):
+    form_class = CustomPasswordResetForm

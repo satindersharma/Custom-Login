@@ -24,8 +24,16 @@
 
 <div class="loginpage limiter">
     <div class="container-login100">
+        
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-            <form class="login100-form validate-form flex-sb flex-w" method="post">
+            <div class="header-area">
+                <div class="logo-image">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo-100.png' %}" alt="Celec Image">
+                </a>
+            </div>
+            </div>
+            <form class="login100-form validate-form flex-sb flex-w p-t-80" method="post">
                 {% csrf_token %}
                 
 
@@ -33,28 +41,28 @@
                         Account Login
                     </span>
 
-                    <span class="txt1 p-b-11">
+                    <!-- <span class="txt1 p-b-11">
                         Username
-                    </span>
+                    </span> -->
                     <div class="wrap-input100 validate-input m-b-36" data-validate="Username is required">
-                        <input class="input100" type="text" name="username">
+                        <input class="input100" type="text" name="username" placeholder="email / username">
                         <span class="focus-input100"></span>
                     </div>
 
-                    <span class="txt1 p-b-11">
+                    <!-- <span class="txt1 p-b-11">
                         Password
-                    </span>
+                    </span> -->
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
                         <span class="btn-show-pass">
                             <i class="fa fa-eye"></i>
                         </span>
-                        <input class="input100" type="password" name="password">
+                        <input class="input100" type="password" name="password" placeholder="password">
                         <span class="focus-input100"></span>
                     </div>
                     {% if form.errors %}
                     <div class="wrap-login100 p-t-5">
                         <span class="error-text text-center">Please enter a correct username and password</span>
-    
+                    </div>
                         {% endif %}
                     <div class="flex-sb-m w-full p-t-5 p-b-11">
                        <div class="contact100-form-checkbox">
@@ -75,8 +83,6 @@
                         <button class="login100-form-btn" type="submit">
                             Login
                         </button>
-
-
                     </div>
 
 
@@ -86,10 +92,33 @@
                     <a href="">Signup</a>
                 </span>
     </div> -->
+    <hr>
+    <span class="txt-account p-b-11 m-a">
+        Don't have an account?
+    </span>
+    <div class="container-login100-form-btn">
+        <a class="login100-form-btn register-form-btn" type="button" href="{% url 'signup' %}">
+            Register Now
+        </a>
+    </div>
 
         </div>
 
     </div>
+
 </div>
+<footer>
+<div class="footer-element">
+    <div class="footer-copyright"><span>
+        Copyright 2012 - 2019 Celec Enterprise | All Rights Reserved | Powered by Celec Enterprise
+    </span></div>
+    <div class="footer-links"><span>
+        <a href="https://celec.com/privacy-policy/">Privacy Policy</a> | <a href="https://celec.com/terms-and-conditions/">Terms & Conditions</a>
+    </span>
+</div>
+    
+</div>
+
+</footer>
 {% endif %}
 {% endblock content %}
