@@ -138,7 +138,7 @@ class CustomAuthenticationForm(AuthenticationForm):
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
-        rem = self.request.POST.get('remember-me')
+        # rem = self.request.POST.get('remember-me')
         # print(self.cleaned_data)
         # print(self.request.session.get_expiry_age())
         # print(rem)

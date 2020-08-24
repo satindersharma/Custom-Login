@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'  # new
+AUTHENTICATION_BACKENDS = [
+    'users.backends.EmailOrUsernameModelBackend', 'django.contrib.auth.backends.ModelBackend']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'celecuser',
         'USER': 'root',
-    #   'PASSWORD': 'Singh$55#321',
+        #   'PASSWORD': 'Singh$55#321',
         'PASSWORD': 'satyam12',
         'HOST': 'localhost',
         'PORT': '3306'
