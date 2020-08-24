@@ -1,31 +1,17 @@
 {% load static %}
 
 <!-- footer start -->
-<div class="footer">
-<footer class="footer-distributed">
-
-        <div class="footer-left">
-
-            <h3><img src="{% static 'feelingsApp/img/my-feelings-180x180.png' %}" alt="footer-company-logo"></h3>
-
-
-            <p class="footer-company-name">My-Feelings &copy; 2015</p>
-
-            <div class="footer-icons">
-                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-            </div>
-
-        </div>
-
-{% if request.path == '/' %}
-{% include "contact/view.html" %}
-{% endif %}
-
-<p class="last-word">
-    <span class="last-words"> My-Feelings is officially maintained by official tech and by using this website you are agree to our privacy policy & terms of using this website</span>
-</p>    
-            </footer>
-</div>
+<footer>
+    <div class="footer-element">
+        <div class="footer-copyright"><span>
+            Copyright 2012 - 2019 Celec Enterprise | All Rights Reserved | Powered by Celec Enterprise
+        </span></div>
+        <div class="footer-links"><span>
+            <a href="{% url 'privacy-page' %}">Privacy Policy</a> | <a href="{% url 'terms-and-condition-page' %}">Terms & Conditions</a>
+        </span>
+    </div>
+        
+    </div>
+    
+    </footer>
 <!-- footer ends -->

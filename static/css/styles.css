@@ -41,7 +41,7 @@ Nav Bar
   padding: 1.15rem 1rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.035);
   background-color: #fff;
-  
+}
   /*
   |-----------------------------------
   | Start navbar logo or brand etc..
@@ -75,10 +75,12 @@ Nav Bar
     max-width: 1140px;
   }
 }
+
 .navbar .navbar-header {
   display: flex;
   align-items: center;
 }
+
 @media (max-width: 768px) {
   .navbar .navbar-header {
     width: 100%;
@@ -213,4 +215,6 @@ Nav Bar
 }
 
 
-
+.fusion-text{
+  margin:1% 5%;
+}

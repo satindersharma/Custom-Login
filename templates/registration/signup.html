@@ -1,44 +1,17 @@
 <!-- templates/registration/signup.html -->
-{% extends 'registration/home.html' %}
+{% extends 'home.html' %}
+{% load static %}
+
 
 {% block title %}Signup{% endblock %}
 {% block content %}
-<style>
-    ul#id_gender {
-        display: inline;
-        margin-left: -18%;
-    }
-
-    #id_gender li {
-        display: inline;
-        list-style: none;
-        color: wheat;
-        margin-right: 6px;
-    }
-
-    input[type='radio'] {
-        transform: scale(1.5);
-    }
-</style>
-<script>
-    $(document).ready(function () {
-        $("#id_first_name, #id_last_name, #id_username, #id_email, #id_password1, #id_password2").addClass("form-control");
-    });
-</script>
-{% include 'base/navbar.html' %}
-{% if user.is_authenticated %}
+{% include 'base/navbar.html' %}{% if user.is_authenticated %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3><span >Hi</span> <span style="color: aqua">{{ user.username }}</span></h3>
-            <span style="color: mintcream;font-size: x-large">You are already logged in</span>
+            <h3><span>Hi {{ user.username }}</h3>
+            <span style="font-size: x-large">You are already logged in</span>
             <div class="row">
-                <div class="col-md-12 mt-3">
-                    <span>
-                        <a role="button" class="btn btn-outline-warning" href="{% url 'posts_detail' %}">Back to
-                            Post</a>
-                    </span>
-                </div>
                 <div class="col-md-12 mt-3">
                     <span>
                         <a role="button" class="btn btn-danger" href="{% url 'logout' %}">Log out</a>
@@ -51,41 +24,118 @@
 
 {% else %}
 
-<div class="container-fluid text-center">
-    <form method="post">
+<div class="loginpage limiter">
+    <div class="container-login100">
+        
+        <div class="wrap-login100 register-view p-l-85 p-r-85 p-t-55 p-b-55">
+            <div class="header-area">
+                <div class="logo-image">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo-100.png' %}" alt="Celec Image">
+                </a>
+            </div>
+            </div>
+            <form class="login100-form validate-form flex-sb flex-w p-t-80" method="post">
+                {% csrf_token %}
+                
 
-        {% csrf_token %}
-        <fieldset>
-            <div class="container-fluid mb-4">
-                <h3 style="color: darkturquoise">Register</h3>
-            </div>
-            {% for field in form %}
-            {% if field.errors %}
-            <div class="form-group row text-muted">
-                <div class="col-sm-4"><span style="color: aquamarine">{{ field.label }}</span></div>
-                <div class="col-sm-2">{{ field }}</div>
-                <div class="col-sm-6" style="list-style-type: none">{% for error in  field.errors %}<span
-                        style="color: orangered">{{ error }}{% endfor %}</span></div>
-            </div>
-            {% else %}
-            <div class="form-group row text-muted">
-                <div class="col-sm-4"><span style="color: aquamarine">{{ field.label }}</span></div>
-                <div class="col-sm-2">{{ field }}</div>
-                {% if field.help_text %}
-                <div class="col-sm-6 m-0" id="help-text" style="list-style-type: none"><span
-                        style="color: wheat">{{ field.help_text }}</span></div>
-                {% endif %}
-            </div>
-            {% endif %}
-            {% endfor %}
-        </fieldset>
-        <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-success btn-block mx-auto">Submit</button>
-            </div>
+                    <span class="login100-form-title p-b-11">
+                        Register
+                    </span>
+
+                    <!-- <span class="txt1 p-b-11">
+                        Username
+                    </span> -->
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Username is required">
+
+                        {{form.username}}
+                        <span class="focus-input100"></span>
+                    
+
+                    </div>
+
+                        {% if form.username.errors %}
+                            {% for ee in form.username.errors %}
+                                    <span class="error-text text-center">
+                                        {{ ee }}
+                                    </span>
+                            {% endfor %}
+                        {% endif %}
+
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Email is required">
+
+                        {{form.email}}
+                        <span class="focus-input100"></span>
+                    </div>
+                   
+                {% if form.email.errors %}
+                            {% for ee in form.email.errors %}
+                                    <span class="error-text text-center">
+                                        {{ ee }}
+                                    </span>
+                            {% endfor %}
+                        {% endif %}
+
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
+                        <span class="btn-show-pass">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        {{form.password1}}
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    {% if form.password1.errors %}
+                            {% for ee in form.password1.errors %}
+                                    <span class="error-text text-center">
+                                        {{ ee }}
+                                    </span>
+                            {% endfor %}
+                        {% endif %}
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
+                        <span class="btn-show-pass">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        {{form.password2}}
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    {% if form.password2.errors %}
+                            {% for ee in form.password2.errors %}
+                                    <span class="error-text text-center">
+                                        {{ ee }}
+                                    </span>
+                            {% endfor %}
+                        {% endif %}
+                    
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn  register-form-btn" type="submit">
+                            Register
+                        </button>
+                    </div>
+
+
+            </form>
+            <!-- <div class="container p-t-25">
+                <span style="text-align: center;">
+                    <a href="">Signup</a>
+                </span>
+    </div> -->
+    <hr>
+    <span class="txt-account p-b-4 m-a">
+        Already have an account?
+    </span>
+    <div class="container-login100-form-btn">
+        <a class="login100-form-btn" type="button" href="{% url 'login' %}">
+           Login
+        </a>
+    </div>
+
         </div>
+
+    </div>
+
 </div>
-</form>
+
 {% endif %}
 {% endblock %}
