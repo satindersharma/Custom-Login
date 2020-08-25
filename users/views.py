@@ -40,7 +40,7 @@ def signup(request):
 
 
 class DashboardView(TemplateView):
-    template_name = "dashboard.html"
+    template_name = "dashboard2.html"
 
 
 class SignUpView(NextUrlMixin, CreateView):

@@ -5,7 +5,9 @@
 
 {% block title %}Signup{% endblock %}
 {% block content %}
-{% include 'base/navbar.html' %}{% if user.is_authenticated %}
+
+
+{% if user.is_authenticated %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
