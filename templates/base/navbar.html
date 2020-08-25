@@ -1,7 +1,7 @@
 {% load static %}
 {% block content %}
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -79,27 +79,38 @@
     </ul>
     {% else %}
             <!-- Non register user nav bar -->
+
+{% comment %} 
             {% url 'login' as login_url %}
             {% if request.path == login_url %}
-          <li class="nav-item  m-auto w-100" >
+              <li class="nav-item  m-auto w-100" >
+                  <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item  m-auto w-100" >
+                <a class="nav-link" href="{% url 'signup' %}">Register</a>
+            </li>
+          {% else %}
+              <li class="nav-item  m-auto w-100" >
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item  m-auto w-100" >
+                <a class="nav-link" href="{% url 'signup' %}">Register</a>
+            </li>
+            <li class="nav-item  m-auto w-100" >
               <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
-          <li class="nav-item  m-auto w-100" >
-            <a class="nav-link" href="{% url 'signup' %}">Register</a>
-        </li>
-          {% else %}
-          <li class="nav-item  m-auto w-100" >
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
+          {% endif %} {% endcomment %}
         <li class="nav-item  m-auto w-100" >
-          <a class="nav-link" href="{% url 'signup' %}">Register</a>
-      </li>
-      <li class="nav-item  m-auto w-100" >
-        <a class="nav-link" href="{% url 'home' %}">Home</a>
-    </li>
-          {% endif %}
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item  m-auto w-100" >
+                <a class="nav-link" href="{% url 'signup' %}">Register</a>
+            </li>
+            <li class="nav-item  m-auto w-100" >
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
           
-          {% endif %}
+  {% endif %}
 
   </nav>
   <!-- End of Topbar -->
