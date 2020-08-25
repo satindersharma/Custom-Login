@@ -527,8 +527,8 @@ a.login100-form-btn {
   }
   /* .logo-image img{
     transform: translateY(100%);
-  } */
-
+   */
+  }
 
 
 .loginpage .horizen-line{
@@ -547,4 +547,3 @@ a.login100-form-btn {
   background: #000;
   background: radial-gradient(#000 40%, rgba(241, 212, 121, 0) 80%);
 }
-
