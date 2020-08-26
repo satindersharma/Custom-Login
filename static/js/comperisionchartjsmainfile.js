@@ -1,95 +1,4 @@
-var MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-var config = {
-  type: "line",
-  data: {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
-    datasets: [
-      {
-        label: "Monthly dataset",
-        backgroundColor: window.chartColors.red,
-        borderColor: window.chartColors.red,
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    // title: {
-    //   display: true,
-    //   text: "Chart.js Line Chart",
-    // },
-    tooltips: {
-      mode: "index",
-      intersect: false,
-    },
-    hover: {
-      mode: "nearest",
-      intersect: true,
-    },
-    scales: {
-      xAxes: [
-        {
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: "Month",
-          },
-        },
-      ],
-      yAxes: [
-        {
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: "Value",
-          },
-        },
-      ],
-    },
-  },
-};
-
-var dailyconfig = {
+var cdailyconfig = {
   type: "line",
   data: {
     labels: [
@@ -127,9 +36,48 @@ var dailyconfig = {
     ],
     datasets: [
       {
-        label: "Daily dataset",
+        label: "Old Daily dataset",
         backgroundColor: window.chartColors.red,
         borderColor: window.chartColors.red,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+        ],
+        fill: false,
+      },
+      {
+        label: "New Daily dataset",
+        backgroundColor: window.chartColors.lightorage,
+        borderColor: window.chartColors.lightorage,
         data: [
           randomScalingFactor(),
           randomScalingFactor(),
@@ -205,7 +153,7 @@ var dailyconfig = {
   },
 };
 
-var weeklyconfig = {
+var cweeklyconfig = {
   type: "bar",
   data: {
     labels: [
@@ -219,9 +167,24 @@ var weeklyconfig = {
     ],
     datasets: [
       {
-        label: "Weekly dataset",
+        label: "Last Week",
         backgroundColor: window.chartColors.orange,
         borderColor: window.chartColors.orange,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+        ],
+        fill: true,
+      },
+      {
+        label: "Current Week",
+        backgroundColor: window.chartColors.bluegreen,
+        borderColor: window.chartColors.bluegreen,
         data: [
           randomScalingFactor(),
           randomScalingFactor(),
@@ -272,7 +235,7 @@ var weeklyconfig = {
   },
 };
 
-var monthlyconfig = {
+var cmonthlyconfig = {
   type: "line",
   data: {
     labels: [
@@ -291,9 +254,29 @@ var monthlyconfig = {
     ],
     datasets: [
       {
-        label: "Monthly dataset",
+        label: "Last Month",
         backgroundColor: window.chartColors.blue,
         borderColor: window.chartColors.blue,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+        ],
+        fill: false,
+      },
+      {
+        label: "Currunt Month",
+        backgroundColor: window.chartColors.darkorange,
+        borderColor: window.chartColors.darkorange,
         data: [
           randomScalingFactor(),
           randomScalingFactor(),
@@ -349,7 +332,7 @@ var monthlyconfig = {
   },
 };
 
-var yearlyconfig = {
+var cyearlyconfig = {
   type: "line",
   data: {
     labels: [
@@ -367,7 +350,27 @@ var yearlyconfig = {
     ],
     datasets: [
       {
-        label: "Yearly dataset",
+        label: "last year",
+        lineTension: 0,
+        backgroundColor: window.chartColors.darkgrey,
+        borderColor: window.chartColors.darkgrey,
+        data: [
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+          randomScalingFactor(),
+        ],
+        fill: false,
+      },
+      {
+        label: "Current year",
         lineTension: 0,
         backgroundColor: window.chartColors.green,
         borderColor: window.chartColors.green,
@@ -427,93 +430,93 @@ var yearlyconfig = {
 
 
   // daily
-  var dailyctx = document.getElementById("daily-line-bar-canvas")
-
-  if (dailyctx != null) {
-    dailyctx.getContext("2d");
-    window.dailyLine = new Chart(dailyctx, dailyconfig);
+  var cdailyctx = document.getElementById("cdaily-line-bar-canvas")
+  if (cdailyctx != null) {
+    cdailyctx.getContext("2d");
+    window.cdailyLine = new Chart(cdailyctx, cdailyconfig);
   }
-
   // Weekly
-
-  var weeklyctx = document.getElementById("weekly-line-bar-canvas")
-
-  if (dailyctx != null) {
-    weeklyctx.getContext("2d");
-    window.weeklyLine = new Chart(weeklyctx, weeklyconfig);
-  }
-
+  var cweeklyctx = document
+    .getElementById("cweekly-line-bar-canvas")
+    if (cdailyctx != null) {
+      cweeklyctx.getContext("2d");
+  window.cweeklyLine = new Chart(cweeklyctx, cweeklyconfig);
+    }
   // monthly
-  var monthlyctx = document.getElementById("monthly-line-bar-canvas")
-
-  if (monthlyctx != null) {
-    monthlyctx.getContext("2d");
-    window.monthlyLine = new Chart(monthlyctx, monthlyconfig);
-  }
+  var cmonthlyctx = document
+    .getElementById("cmonthly-line-bar-canvas")
+    if (cdailyctx != null) {
+      cmonthlyctx.getContext("2d");
+  window.cmonthlyLine = new Chart(cmonthlyctx, cmonthlyconfig);
+    }
   // yearly
-  var yearlyctx = document.getElementById("yearly-line-bar-canvas")
+  var cyearlyctx = document
+    .getElementById("cyearly-line-bar-canvas")
+    if (cdailyctx != null) {
+      cyearlyctx.getContext("2d");
+  window.cyearlyLine = new Chart(cyearlyctx, cyearlyconfig);
+    }
 
-  if (yearlyctx != null) {
-    yearlyctx.getContext("2d");
-    window.yearlyLine = new Chart(yearlyctx, yearlyconfig);
+
+
+
+var cdailybutton = document
+.getElementById("cdaily-line-bar-randomizeData")
+
+if(cdailybutton != null){
+
+  cdailybutton.addEventListener("click", function () {
+    cdailyconfig.data.datasets.forEach(function (dataset) {
+      dataset.data = dataset.data.map(function () {
+        return randomScalingFactor();
+      });
+    });
+
+    window.cdailyLine.update();
+  });
+
+}
+  
+
+var cweeklybutton = document
+  .getElementById("cweekly-line-bar-canvas-randomizeData")
+  if(cweeklybutton != null){
+    cweeklybutton.addEventListener("click", function () {
+    cweeklyconfig.data.datasets.forEach(function (dataset) {
+      dataset.data = dataset.data.map(function () {
+        return randomScalingFactor();
+      });
+    });
+    window.cweeklyLine.update();
+  });
   }
 
 
-var dailybutton = document.getElementById("daily-line-bar-randomizeData")
+  var cmonthlybutton = document
+  .getElementById("cmonthly-line-bar-canvas-randomizeData")
+  if(cmonthlybutton != null){
 
-if (dailybutton != null) {
-  dailybutton.addEventListener("click", function () {
-    dailyconfig.data.datasets.forEach(function (dataset) {
+    cmonthlybutton.addEventListener("click", function () {
+    cmonthlyconfig.data.datasets.forEach(function (dataset) {
       dataset.data = dataset.data.map(function () {
         return randomScalingFactor();
       });
     });
-
-    window.dailyLine.update();
+    window.cmonthlyLine.update();
   });
-}
+  }
 
-var weeklybutton = document.getElementById(
-  "weekly-line-bar-canvas-randomizeData"
-);
-if (weeklybutton != null) {
-  weeklybutton.addEventListener("click", function () {
-    weeklyconfig.data.datasets.forEach(function (dataset) {
+  var cyearlybutton = document
+  .getElementById("cyearly-line-bar-canvas-randomizeData")
+  if(cyearlybutton != null){
+
+    cyearlybutton.addEventListener("click", function () {
+    cyearlyconfig.data.datasets.forEach(function (dataset) {
       dataset.data = dataset.data.map(function () {
         return randomScalingFactor();
       });
     });
-    window.weeklyLine.update();
-  });
-}
-
-var monthlybutton = document.getElementById(
-  "monthly-line-bar-canvas-randomizeData"
-)
-if (monthlybutton != null) {
-  monthlybutton.addEventListener("click", function () {
-    monthlyconfig.data.datasets.forEach(function (dataset) {
-      dataset.data = dataset.data.map(function () {
-        return randomScalingFactor();
-      });
-    });
-    window.monthlyLine.update();
-  });
-}
-
-var yearlybutton = document.getElementById(
-  "yearly-line-bar-canvas-randomizeData"
-)
-
-
-if (yearlybutton != null) {
-  yearlybutton.addEventListener("click", function () {
-    yearlyconfig.data.datasets.forEach(function (dataset) {
-      dataset.data = dataset.data.map(function () {
-        return randomScalingFactor();
-      });
-    });
-    window.yearlyLine.update();
+    window.cyearlyLine.update();
   });
 }
 
@@ -571,4 +574,4 @@ if (yearlybutton != null) {
 //     });
 
 //     window.myLine.update();
-//   })
+//   });

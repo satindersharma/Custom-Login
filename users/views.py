@@ -42,6 +42,9 @@ def signup(request):
 class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
+class ComparisionDashboardView(TemplateView):
+    template_name = "comparision-dashboard.html"
+
 
 class SignUpView(NextUrlMixin, CreateView):
     form_class = CustomUserCreationForm

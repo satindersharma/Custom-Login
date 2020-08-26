@@ -7,7 +7,10 @@ window.chartColors = {
   green: "rgb(75, 192, 192)",
   blue: "rgb(54, 162, 235)",
   purple: "rgb(153, 102, 255)",
-  grey: "rgb(201, 203, 207)",
+  darkorange: "rgb(185, 119, 14)",
+  darkgrey: "rgb(28, 40, 51)",
+  bluegreen: "rgb(23, 165, 137)",
+  lightorage: "rgb(245, 176, 65)",
 };
 
 (function (global) {

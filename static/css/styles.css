@@ -227,3 +227,9 @@ div#daily-line-bar-randomizeData,  div#weekly-line-bar-canvas-randomizeData, div
   width: 30px;
   margin: 0 10px 0 auto;
 }
+
+div#cdaily-line-bar-randomizeData,  div#cweekly-line-bar-canvas-randomizeData, div#cmonthly-line-bar-canvas-randomizeData, div#cyearly-line-bar-canvas-randomizeData{
+  padding: 2px 6px;
+  width: 30px;
+  margin: 0 10px 0 auto;
+}
