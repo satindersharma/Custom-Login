@@ -173,7 +173,7 @@ var dailyconfig = {
     //   display: true,
     //   text: "Chart.js Line Chart",
     // },
-    lineTension: .000001,
+    
     tooltips: {
       mode: "index",
       intersect: false,
@@ -292,8 +292,8 @@ var monthlyconfig = {
     datasets: [
       {
         label: "Monthly dataset",
-        backgroundColor: window.chartColors.red,
-        borderColor: window.chartColors.red,
+        backgroundColor: window.chartColors.blue,
+        borderColor: window.chartColors.blue,
         data: [
           randomScalingFactor(),
           randomScalingFactor(),
@@ -308,7 +308,7 @@ var monthlyconfig = {
           randomScalingFactor(),
           randomScalingFactor(),
         ],
-        fill: true,
+        fill: false,
       },
     ],
   },
@@ -356,8 +356,9 @@ var yearlyconfig = {
     datasets: [
       {
         label: "Yearly dataset",
-        backgroundColor: window.chartColors.red,
-        borderColor: window.chartColors.red,
+        lineTension: 0,
+        backgroundColor: window.chartColors.green,
+        borderColor: window.chartColors.green,
         data: [
           randomScalingFactor(),
           randomScalingFactor(),
@@ -371,7 +372,7 @@ var yearlyconfig = {
           randomScalingFactor(),
           randomScalingFactor(),
         ],
-        fill: true,
+        fill: false,
       },
     ],
   },
