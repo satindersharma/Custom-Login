@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'ermapp',
+    'rest_framework',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'  # new
@@ -55,6 +58,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'CelecUserProject.urls'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
 
 TEMPLATES = [
     {
@@ -93,7 +104,16 @@ DATABASES = {
         'PASSWORD': 'satyam12',
         'HOST': 'localhost',
         'PORT': '3306'
-    }
+    },
+    # https://docs.djangoproject.com/en/3.1/topics/db/multi-db/
+    #    'crmdata': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'celecdat_test',
+    #     'USER': 'root',
+    #     'PASSWORD': 'Singh$55#321',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306'
+    # }
 }
 
 # Password validation
