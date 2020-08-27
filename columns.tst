@@ -1,0 +1,1 @@
+"volt1","amp1","kw1","pf1","kvar1","kva1","clo1","rct1","volt2","amp2","kw2","pf2","kvar","kva2","clo2","rct2","volt3","amp3","kw3","pf3","kvar3","kva3","clo3","rct3","cap1","cap2","cap3","cap4","cap5","cap6","cap7","cap8","cap9","cap10","cap11","cap12"

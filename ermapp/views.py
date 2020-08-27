@@ -31,6 +31,13 @@ class Home(TemplateView):
     template_name = "home.html"
 
 
+class ProAnotateAPIView(APIView):
+    def get(self, request, format=None):
+        qs = S1902000403.objects.annotate()
+        serializer = ProductSerializer(qs)
+        # print(serializer.data.get('id'))
+        return Response(serializer.data)
+
 class ProductLastAPIView(APIView):
     def get(self, request, format=None):
         qs = S1902000403.objects.latest()

@@ -3,29 +3,58 @@
 
 {% block content %}
 
+{% comment %} 
 
+var tt = $.ajax({method: "GET", url: '/alljson/?date_filter=month', dataType: 'json',});
+tt.responseJSON
+
+ {% endcomment %}
 
 
 <script>
 
-var endpoint = '/alljson/?date_filter=month'
+var endpoint = '/json/?date_filter=month'
 
 var defaultData = []
 var labels = [];
+{% comment  %}
+var columns =["volt1","amp1","kw1","pf1","kvar1","kva1","clo1","rct1","volt2","amp2","kw2","pf2","kvar","kva2","clo2","rct2","volt3","amp3","kw3","pf3","kvar3","kva3","clo3","rct3","cap1","cap2","cap3","cap4","cap5","cap6","cap7","cap8","cap9","cap10","cap11","cap12"];
+var groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+{% endcomment %}
 $.ajax({
     method: "GET",
     url: endpoint,
     dataType: 'json',
     success: function(data){
-        labels = "month"
+        labelss = Object.keys(data[0])
         defaultData = data
-        console.log(defaultData)
+        {% comment  %}
+        console.log("all values  " + defaultData)
+        console.log("values  " + defaultData)
+        
+        
+        console.log('keys ' + labelss)
+        console.log(groupBy(['one', 'two', 'three'], 'length'));
+        var gb = new GroupBy(defaultData.responseJSON,columns);
+        console.log(gb.sum());
+        console.log(gb.min());
+        console.log(gb.max());
+        console.log(gb.avg());
+        console.log(gb.distinctCount());
+
+{% endcomment %}
+
         setChart()
        
     },
     error: function(error_data){
         console.log("error")
-        console.log(error_data)
+        console.log("error ", error_data.responseJSON)
     }
 })
 
@@ -35,7 +64,7 @@ function setChart(){
     var myChart = new Chart(ctx2, {
     type: 'bar',
     data: {
-
+        labels: labelss,
         datasets: [{
             label: '# of Votes',
             data: defaultData,
@@ -57,7 +86,7 @@ function setChart(){
     var myChart = new Chart(ctx, {
     type: 'polarArea',
     data: {
-        labels: labels,
+        labels: Object.keys(data[0]),
         datasets: [{
             label: '# of Votes',
             data: defaultData,
@@ -99,7 +128,7 @@ function setChart(){
 
 <div class="container">
 <div class='row'>
-    <div class='col col-sm-12' url-endpoint="{% url 'api-data' %}">
+    <div class='col col-sm-12' url-endpoint="{% url 'alljson' %}">
         <h1>Chart</h1>
         
         <div class='col-sm-6'>
