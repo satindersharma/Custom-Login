@@ -11,6 +11,9 @@ from django.http import (Http404, HttpResponse, HttpResponseRedirect,
 # python manage.py dumpdata ConnectWithMYSQL.S1902000403 --indent 4 > table_data.json
 # after dowloading json  replace the model identifier in json file
 # python manage.py loaddata table_data.json --app ermapp.S1902000403
+
+# i made a copyp of data after change
+# python manage.py dumpdata ermapp.S1902000403 --indent 4 > changed_data.json
 from rest_framework.views import APIView
 
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,10 +21,12 @@ from .models import S1902000403
 from ermapp.serializers import ProductSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
+from django.views.generic import View
 from django.shortcuts import get_object_or_404
 from .filters import CustomFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
+from django.http import JsonResponse
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -74,6 +79,47 @@ class ProductRetriveAPIView(RetrieveAPIView):
     # def get_queryset(self):
     #     qs = Product.objects.latest()
     #     return qs
+
+
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'charts.html', {"customers": 10})
+
+
+
+def get_data(request, *args, **kwargs):
+    data = {
+        "sales": 100,
+        "customers": 10,
+    }
+    return JsonResponse(data) # http response
+
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        # qs_count = User.objects.all().count()
+        qs_count = 1
+        labels = ["Users", "Blue", "Yellow", "Green", "Purple", "Orange"]
+        default_items = [qs_count, 23, 2, 3, 12, 2]
+        data = {
+                "labels": labels,
+                "default": default_items,
+        }
+        return Response(data)
+
+
+
+
+
+
+
+
+
+
 
 
 class ProductLatestAPIView(APIView):

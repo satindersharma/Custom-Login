@@ -8,6 +8,8 @@ import django_filters
 2016-07-01
 2020-07-01
 
+, empty_label='choose any date'
+
 '''
 
 class CustomFilter(django_filters.FilterSet):
@@ -20,7 +22,7 @@ class CustomFilter(django_filters.FilterSet):
     year = django_filters.NumberFilter(
         field_name='date_time', lookup_expr='year',label='enter year')
     date_range = django_filters.DateFromToRangeFilter(field_name='date_time',label='enter date range')
-    date_filter = django_filters.DateRangeFilter(field_name='date_time',label='date choice')
+    date_filter = django_filters.DateRangeFilter(field_name='date_time',label='date choice', empty_label='choose range')
 
     class Meta:
         model = S1902000403
