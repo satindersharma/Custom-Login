@@ -20,7 +20,8 @@ from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.shortcuts import get_object_or_404
 from .filters import CustomFilter
-
+from rest_framework.permissions import AllowAny
+from rest_framework.renderers import JSONRenderer
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -40,6 +41,20 @@ class ProductLilstAPIView(ListAPIView):
     filterset_class = CustomFilter
     filterset_fields = ['date_time', 'srl']
     # ordering_fields = ['date_time', 'srl']
+    filterset_class = CustomFilter
+    ordering = ['date_time']
+
+class ProductLilstJsonAPIView(ListAPIView):
+    queryset = S1902000403.objects.all()
+    serializer_class = ProductSerializer
+    # filter_backends = [DjangoFilterBackend]
+    filterset_class = CustomFilter
+    filterset_fields = ['date_time', 'srl']
+    # ordering_fields = ['date_time', 'srl']
+    pagination_class = None
+    filterset_class = CustomFilter
+    permission_classes = [AllowAny]
+    renderer_classes = [JSONRenderer]
     ordering = ['date_time']
 
 # class ProductLilstAPIView(ListAPIView):

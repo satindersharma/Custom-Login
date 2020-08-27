@@ -40,7 +40,7 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
             <i class="icon ion-ios-gear-outline"></i>
-            <span>Customization</span>
+            <span>Goals</span>
           </a>
           <ul class="nav-sub">
             <li class="nav-item"><a href="{% static 'dashboard/form-elements.html' %}" class="nav-link">Dashboards</a></li>
@@ -66,20 +66,7 @@
          </ul>
         </li>
         
-        <!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-person-outline"></i>
-            <span>Audience</span>
-          </a>
-          <ul class="nav-sub">
-            <li class="nav-item"><a href="{% static 'dashboard/chart-morris.html' %}" class="nav-link">Active Users</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/chart-flot.html' %}" class="nav-link">Geo</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/chart-chartjs.html' %}" class="nav-link">Behavior</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/chart-rickshaw.html' %}" class="nav-link">Technology</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/chart-sparkline.html' %}" class="nav-link">Custom</a></li>
-          </ul>
-        </li>
+
         
         <!-- nav-item -->
         <li class="nav-item">
@@ -96,8 +83,8 @@
         <!-- nav-item -->
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-list-outline"></i>
-            <span>Behavior</span>
+            <i class="icon ion-ios-alarm-outline"></i>
+            <span>Alarms</span>
           </a>
           <ul class="nav-sub">
             <li class="nav-item"><a href="{% static 'dashboard/table-datatable.html' %}" class="nav-link">Overview</a></li>
@@ -108,8 +95,8 @@
         <!-- nav-item -->
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-flag-outline"></i>
-            <span>Conversions</span>
+            <i class="icon ion-ios-search"></i>
+            <span>Referance</span>
           </a>
           <ul class="nav-sub">
             <li class="nav-item"><a href="{% static 'dashboard/blank.html' %}" class="nav-link">Goals</a></li>
@@ -197,20 +184,20 @@
             <ul class="list-unstyled user-profile-nav">
               <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
               <li><a href=""><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
-              <li><a href=""><i class="icon ion-ios-download-outline"></i> Downloads</a></li>
-              <li><a href=""><i class="icon ion-ios-star-outline"></i> Favorites</a></li>
-              <li><a href=""><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
+              <li><a href=""><i class="icon ion-android-notifications-none"></i> Notifications</a></li>
               <li><a href="{% url 'logout' %}"><i class="icon ion-power"></i> Sign Out</a></li>
             </ul>
           </div><!-- dropdown-menu -->
         </div><!-- dropdown -->
       </div><!-- kt-headpanel-right -->
     </div><!-- kt-headpanel -->
+    {% comment %}
     <div class="kt-breadcrumb">
       <nav class="breadcrumb">
         <a class="breadcrumb-item" href="index.html">Celec</a>
-        {% comment %} <span class="breadcrumb-item active">Dashboard</span> {% endcomment %}
+         <span class="breadcrumb-item active">Dashboard</span> 
       </nav>
     </div><!-- kt-breadcrumb -->
+    {% endcomment %}
 
     {% endblock content %}                                                                                                                                                                                                          

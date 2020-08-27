@@ -9797,7 +9797,13 @@ textarea.parsley-success:focus {
   border-bottom: 0px solid #ced4da;
   align-items: center;
   background-color: #fff;
-  padding: 0 15px; }
+  padding: 0 15px; 
+  align-content: center;
+  justify-content: center;
+}
+
+
+
   .kt-pagetitle h5 {
     color: #343a40;
     margin-bottom: 2px; }
@@ -12019,7 +12025,8 @@ textarea.parsley-success:focus {
     height: 250%; }
 
   .mx-ht-sm-250p {
-    max-height: 250%; }
+    max-height: 250%; 
+  }
 
   .mn-ht-sm-250p {
     min-height: 250%; }

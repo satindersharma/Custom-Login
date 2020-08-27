@@ -2,10 +2,27 @@ from .models import S1902000403
 import django_filters
 
 
+'''
+
+
+2016-07-01
+2020-07-01
+
+'''
+
 class CustomFilter(django_filters.FilterSet):
+    day = django_filters.NumberFilter(
+        field_name='date_time', lookup_expr='day',label='enter day')
+    week = django_filters.NumberFilter(
+        field_name='date_time', lookup_expr='week',label='enter week')
+    month = django_filters.NumberFilter(
+        field_name='date_time', lookup_expr='month',label='enter month')
     year = django_filters.NumberFilter(
-        field_name ='date_time', lookup_expr='year')
+        field_name='date_time', lookup_expr='year',label='enter year')
+    date_range = django_filters.DateFromToRangeFilter(field_name='date_time',label='enter date range')
+    date_filter = django_filters.DateRangeFilter(field_name='date_time',label='date choice')
 
     class Meta:
         model = S1902000403
-        fields = ['date_time','year']
+        fields = [ 'day','week', 'month', 'year']
+        # fields = '__all__'

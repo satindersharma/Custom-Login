@@ -80,6 +80,9 @@ class S1902000403(models.Model):
     # Field name made lowercase.
     cap12 = models.IntegerField(db_column='CAP12', blank=True, null=True)
 
+    # def __str__(self):
+    #     return self.srl
+
     class Meta:
         db_table = 'S_19020004_03'
         get_latest_by = 'srl'
