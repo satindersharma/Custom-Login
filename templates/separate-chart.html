@@ -1,0 +1,164 @@
+{% extends "base.html" %} {% load static %} 
+{% block title %}Realtime Chart {% endblock title %}
+ {% block content %}
+
+<script>
+
+var endpoint = '/last/'
+var defaultData = []
+var labelss = [];
+var realtimectx_volt1_Line = ''
+var flag = 1
+function fetchdata(){
+    $.ajax({
+        method: "GET",
+        url: endpoint,
+        dataType: 'json',
+        success: function(data){
+            labelss = Object.keys(data)
+            defaultData = Object.values(data)
+            
+            console.log(new Date(defaultData[1]))
+            console.log(defaultData[2])
+            
+            setChart()
+            flag = 0
+        },
+        error: function(error_data){
+            console.log("error")
+        }
+    })
+    if (flag){
+      setChart()
+    }
+    else{
+      addData(realtimectx_volt1_config,  defaultData[1], defaultData[2])
+
+    }
+
+
+
+}
+
+
+
+  
+function setChart(){
+  // realtime
+  var realtimectx_volt1 = document.getElementById("volt1-line-bar-canvas")
+  if (realtimectx_volt1 != null) {
+    
+    realtimectx_volt1.getContext("2d");
+    window.realtimectx_volt1_Line = new Chart(realtimectx_volt1, realtimectx_volt1_config);
+  }
+}
+var realtimectx_volt1_config = {
+        type: 'line',
+        data: {
+            labels: defaultData[1],
+            datasets: [{
+                label: "volt1",
+                data: defaultData[2],
+                backgroundColor: "rgb(75, 192, 192)",
+                borderColor: "rgb(75, 192, 192)",
+                borderWidth: 1,
+                fill: false
+            }]
+        },
+        
+        options: {
+            responsive: true,
+            animation: false,
+            tooltips: {
+              mode: "index",
+              intersect: false,
+            },
+            hover: {
+              mode: "nearest",
+              intersect: true,
+            },
+            scales: {
+              xAxes: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                  },type: 'time',
+                ticks: {
+                    autoSkip: true,
+                    maxTicksLimit: 20
+                }
+                  
+                },
+              ],
+              yAxes: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "volt1",
+                  },
+                },
+              ],
+            },
+
+        }
+    }
+
+
+
+  function addData(chart, label, data) {
+    if (chart.data.labels.includes(label))
+      {
+      return false
+    }else
+    {
+    chart.data.labels.push(label);
+
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    // chart.update();
+    window.realtimectx_volt1_Line.update();
+    }
+}
+
+
+    // var ctx = document.getElementById("myChart");
+
+
+    $(document).ready(function()
+    {
+
+      
+
+
+        setInterval(fetchdata,2000);
+    });
+
+</script>
+
+
+<div class="row">
+  <div class="col-lg-2">
+    <canvas id="volt1-line-bar-canvas" height="400%"></canvas>
+  </div>
+  <div class="col-lg-2">
+    <canvas id="amp1-line-bar-canvas" height="400%"></canvas>
+  </div>
+  <div class="col-lg-2">
+    <canvas id="kw1-line-bar-canvas" height="400%"></canvas>
+  </div>
+  <div class="col-lg-2">
+    <canvas id="pf1-line-bar-canvas" height="400%"></canvas>
+  </div>
+
+  <div class="col-lg-2">
+    <canvas id="kvar1-line-bar-canvas" height="400%"></canvas>
+  </div>
+  <div class="col-lg-2">
+    <canvas id="kva1-line-bar-canvas" height="400%"></canvas>
+  </div>
+</div>
+
+{% endblock content %}

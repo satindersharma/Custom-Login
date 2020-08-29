@@ -26,5 +26,5 @@ class CustomFilter(django_filters.FilterSet):
 
     class Meta:
         model = S1902000403
-        fields = [ 'day','week', 'month', 'year']
+        fields = ['day','week', 'month', 'year']
         # fields = '__all__'

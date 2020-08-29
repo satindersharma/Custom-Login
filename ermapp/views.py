@@ -18,7 +18,7 @@ from rest_framework.views import APIView
 
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import S1902000403
-from ermapp.serializers import ProductSerializer
+from ermapp.serializers import ProductSerializer, ExProductSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.views.generic import View
@@ -37,6 +37,14 @@ class ProAnotateAPIView(APIView):
         serializer = ProductSerializer(qs)
         # print(serializer.data.get('id'))
         return Response(serializer.data)
+
+class ExProductLastAPIView(APIView):
+    def get(self, request, format=None):
+        qs = S1902000403.objects.latest()
+        serializer = ExProductSerializer(qs)
+        # print(serializer.data.get('id'))
+        return Response(serializer.data)
+
 
 class ProductLastAPIView(APIView):
     def get(self, request, format=None):
@@ -93,6 +101,9 @@ class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'charts.html', {"customers": 10})
 
+
+class SeparateChartView(TemplateView):
+    template_name = 'Separate-chart.html'
 
 
 def get_data(request, *args, **kwargs):

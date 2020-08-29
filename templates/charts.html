@@ -13,41 +13,25 @@ tt.responseJSON
 
 <script>
 
-var endpoint = '/json/?date_filter=month'
+var endpoint = '/last/'
 
 var defaultData = []
 var labels = [];
-{% comment  %}
-var columns =["volt1","amp1","kw1","pf1","kvar1","kva1","clo1","rct1","volt2","amp2","kw2","pf2","kvar","kva2","clo2","rct2","volt3","amp3","kw3","pf3","kvar3","kva3","clo3","rct3","cap1","cap2","cap3","cap4","cap5","cap6","cap7","cap8","cap9","cap10","cap11","cap12"];
-var groupBy = function(xs, key) {
-  return xs.reduce(function(rv, x) {
-    (rv[x[key]] = rv[x[key]] || []).push(x);
-    return rv;
-  }, {});
-};
-{% endcomment %}
+
 $.ajax({
     method: "GET",
     url: endpoint,
     dataType: 'json',
     success: function(data){
-        labelss = Object.keys(data[0])
-        defaultData = data
-        {% comment  %}
-        console.log("all values  " + defaultData)
+        delete  defaultData["srl"]
+        delete  defaultData["date_time"]
+        labelss = Object.keys(data)
+        defaultData = Object.values(data)
+
         console.log("values  " + defaultData)
         
-        
-        console.log('keys ' + labelss)
-        console.log(groupBy(['one', 'two', 'three'], 'length'));
-        var gb = new GroupBy(defaultData.responseJSON,columns);
-        console.log(gb.sum());
-        console.log(gb.min());
-        console.log(gb.max());
-        console.log(gb.avg());
-        console.log(gb.distinctCount());
 
-{% endcomment %}
+
 
         setChart()
        
@@ -62,13 +46,28 @@ function setChart(){
     var ctx = document.getElementById("myChart11");
     var ctx2 = document.getElementById("myChart112");
     var myChart = new Chart(ctx2, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: labelss,
         datasets: [{
             label: '# of Votes',
             data: defaultData,
-
+             backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
             borderWidth: 1
         }]
     },
@@ -86,7 +85,7 @@ function setChart(){
     var myChart = new Chart(ctx, {
     type: 'polarArea',
     data: {
-        labels: Object.keys(data[0]),
+        labels: labelss,
         datasets: [{
             label: '# of Votes',
             data: defaultData,
@@ -127,8 +126,9 @@ function setChart(){
 </script>
 
 <div class="container">
+
 <div class='row'>
-    <div class='col col-sm-12' url-endpoint="{% url 'alljson' %}">
+    <div class='col col-sm-12' url-endpoint="{% url 'last' %}">
         <h1>Chart</h1>
         
         <div class='col-sm-6'>

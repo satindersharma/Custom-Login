@@ -438,21 +438,21 @@ var cyearlyconfig = {
   // Weekly
   var cweeklyctx = document
     .getElementById("cweekly-line-bar-canvas")
-    if (cdailyctx != null) {
+    if (cweeklyctx != null) {
       cweeklyctx.getContext("2d");
   window.cweeklyLine = new Chart(cweeklyctx, cweeklyconfig);
     }
   // monthly
   var cmonthlyctx = document
     .getElementById("cmonthly-line-bar-canvas")
-    if (cdailyctx != null) {
+    if (cmonthlyctx != null) {
       cmonthlyctx.getContext("2d");
   window.cmonthlyLine = new Chart(cmonthlyctx, cmonthlyconfig);
     }
   // yearly
   var cyearlyctx = document
     .getElementById("cyearly-line-bar-canvas")
-    if (cdailyctx != null) {
+    if (cyearlyctx != null) {
       cyearlyctx.getContext("2d");
   window.cyearlyLine = new Chart(cyearlyctx, cyearlyconfig);
     }

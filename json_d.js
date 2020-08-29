@@ -7,3 +7,37 @@ var sum = Object.values(tt).reduce((acc, current) => acc + current.volt1, 0);
 
 var average = sum / Object.values(tt).length;
 console.log(average);
+
+
+
+
+function getAverages(array, groupKeys, averageKeys) {
+    var groups = {},
+        result = [];
+
+    array.forEach(o => {
+        var key = groupKeys.map(k => o[k]).join('|'),
+            group = groups[key];
+
+        if (!group) {
+            groups[key] = { count: 0, payload: {} };
+            group = groups[key];
+            averageKeys.forEach(k => group[k] = 0);
+            groupKeys.forEach(k => group.payload[k] = o[k]);
+            result.push(group.payload);
+        }
+        groups[key].count++;
+        averageKeys.forEach(k => group.payload[k] = (group[k] += o[k]) / group.count);
+    })
+    return result;
+}
+groupke = ["volt1","amp1","kw1","pf1","kvar1","kva1","clo1","rct1","volt2","amp2","kw2","pf2","kvar","kva2","clo2","rct2","volt3","amp3","kw3","pf3","kvar3","kva3","clo3","rct3","cap1","cap2","cap3","cap4","cap5","cap6","cap7","cap8","cap9","cap10","cap11","cap12"]
+const users = [{ name: 'Adam', age: 20, country: 'France', weight: 100 }, { name: 'Adam', age: 28, country: 'Germany', weight: 100 }, { name: 'Adam', age: 28, country: 'India', weight: 200 }, { name: 'Adam', age: 40, country: 'France', weight: 200 }, { name: 'Oliver', age: 28, country: 'France', weight: 200 }];
+
+console.log(getAverages(users, ['name', 'country'], ['age', 'weight']));
+console.log(getAverages(users, ['name'], ['age', 'weight']));
+
+console.log(getAverages(tt, ['name', 'country'], ['age', 'weight']));
+console.log(getAverages(tt, groupke, groupke));
+console.log(getAverages(tt, ["srl"], groupke));
+
