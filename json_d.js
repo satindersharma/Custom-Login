@@ -41,3 +41,25 @@ console.log(getAverages(tt, ['name', 'country'], ['age', 'weight']));
 console.log(getAverages(tt, groupke, groupke));
 console.log(getAverages(tt, ["srl"], groupke));
 
+
+
+
+
+
+realtimectx_volt1
+realtimectx_amp1
+realtimectx_kw1
+realtimectx_pf1
+realtimectx_kvar1
+realtimectx_volt2
+realtimectx_amp2
+realtimectx_kw2
+realtimectx_pf2
+realtimectx_kvar2
+realtimectx_kva2
+realtimectx_volt3
+realtimectx_amp3
+realtimectx_kw3
+realtimectx_pf3
+realtimectx_kvar3
+realtimectx_kva3

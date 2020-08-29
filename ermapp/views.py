@@ -103,6 +103,10 @@ class HomeView(View):
 
 
 class SeparateChartView(TemplateView):
+    template_name = 'Realtime-chart.html'
+
+
+class RealtimeChartView(TemplateView):
     template_name = 'Separate-chart.html'
 
 

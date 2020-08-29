@@ -10,6 +10,7 @@ urlpatterns = [
     # path('api/chart/data/', views.ChartData.as_view()),
     path('chart/', views.HomeView.as_view(), name='chart'),
     path('separate-chart/', views.SeparateChartView.as_view(), name='chart'),
+    path('realtime/', views.RealtimeChartView.as_view(), name='chart'),
    
     # path('<int:pk>/', views.ProductRetriveAPIView.as_view(), name='single'),
     # path('<int:pk>', views.ProductLatestAPIView.as_view(), name='latest'),
