@@ -4,37 +4,57 @@
 
 <style>
 
+.capvalue, .clorctvalue {
+
+text-align:center;
+}
+.canvasclass{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px auto;
+  width:50%;
+  text-align:center;
+}
+
+
+@media (min-width: 1200px) { 
+
+  canvas{
+  max-height: 300px !important;
+  max-width: 600px !important;
+
+}
+ }
 
 </style>
-
-
-
-<div class="row" style="position: relative;min-height:300px">
+<div class="container-fluid">
+<div class="row">
   <div class="col-lg-2">
-    <canvas id="volt1-line-bar-canvas" height="300px" ></canvas>
+    <canvas id="volt1-line-bar-canvas" height="300px"></canvas>
   </div>
   <div class="col-lg-2">
-    <canvas id="amp1-line-bar-canvas" height="300px" ></canvas>
+    <canvas id="amp1-line-bar-canvas" height="300px"></canvas>
   </div>
   <div class="col-lg-2">
-    <canvas id="kw1-line-bar-canvas" height="300px" ></canvas>
+    <canvas id="kw1-line-bar-canvas" height="300px"></canvas>
   </div>
   <div class="col-lg-2">
-    <canvas id="pf1-line-bar-canvas"  height="300px" ></canvas>
+    <canvas id="pf1-line-bar-canvas" height="300px"></canvas>
   </div>
   <div class="col-lg-2">
-    <canvas id="kvar1-line-bar-canvas" height="300px" ></canvas>
+    <canvas id="kvar1-line-bar-canvas" height="300px"></canvas>
   </div>
 
   <div class="col-lg-2">
-    <canvas id="kva1-line-bar-canvas"  height="300px" ></canvas>
+    <canvas id="kva1-line-bar-canvas" height="300px"></canvas>
   </div>
 
 </div>
 
-<div class="row" style="position: relative;min-height:300px">
+<div class="row">
   <div class="col-lg-2">
-    <canvas id="volt2-line-bar-canvas" height="300px" ></canvas>
+    <canvas id="volt2-line-bar-canvas"  height="300px"></canvas>
   </div>
   <div class="col-lg-2">
     <canvas id="amp2-line-bar-canvas" height="300px"></canvas>
@@ -55,7 +75,7 @@
 
 </div>
 
-<div class="row" style="position: relative;min-height:300px">
+<div class="row">
   <div class="col-lg-2">
     <canvas id="volt3-line-bar-canvas" height="300px"></canvas>
   </div>
@@ -78,4 +98,87 @@
 
 </div>
 
+<div class="row   canvasclass">
+  <div class="col-lg-2">
+    <p>clo1</p>
+    <i class="fas fa-circle fa-3x " id="clo1-icon"></i>
+  </div>
+  <div class="col-lg-2">
+    <p>rct1</p>
+    <i class="fas fa-circle fa-3x " id="rct1-icon"></i>
+  </div>
+  <div class="col-lg-2">
+       <p>clo2</p>
+    <i class="fas fa-circle fa-3x " id="clo2-icon"></i>
+  </div>
+  <div class="col-lg-2">
+       <p>rct2</p>
+    <i class="fas fa-circle fa-3x " id="rct2-icon"></i>
+  </div>
+  <div class="col-lg-2">
+        <p>clo3</p>
+    <i class="fas fa-circle fa-3x " id="clo3-icon"></i>
+  </div>
+
+  <div class="col-lg-2">
+        <p>rct3</p>
+    <i class="fas fa-circle fa-3x " id="rct3-icon"></i>
+  </div>
+</div>
+
+
+<div class="row   canvasclass">
+  <div class="col-lg-1">
+    <p>cap1</p>
+    <i class="fas fa-circle fa-3x " id="cap1-icon"></i>
+  </div>
+  <div class="col-lg-1">
+    <p>cap2</p>
+    <i class="fas fa-circle fa-3x " id="cap2-icon"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>cap3</p>
+    <i class="fas fa-circle fa-3x " id="cap3-icon"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>cap4</p>
+    <i class="fas fa-circle fa-3x " id="cap4-icon"></i>
+  </div>
+  <div class="col-lg-1">
+        <p>cap5</p>
+    <i class="fas fa-circle fa-3x " id="cap5-icon"></i>
+  </div>
+
+  <div class="col-lg-1">
+        <p>cap6</p>
+    <i class="fas fa-circle fa-3x " id="cap6-icon"></i>
+  </div>
+    <div class="col-lg-1">
+    <p>cap7</p>
+    <i class="fas fa-circle fa-3x " id="cap7-icon"></i>
+  </div>
+  <div class="col-lg-1">
+    <p>cap8</p>
+    <i class="fas fa-circle fa-3x " id="cap8-icon"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>ca9</p>
+    <i class="fas fa-circle fa-3x " id="cap9-icon"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>ca10</p>
+    <i class="fas fa-circle fa-3x " id="ca10-icon"></i>
+  </div>
+  <div class="col-lg-1">
+        <p>cap11</p>
+    <i class="fas fa-circle fa-3x " id="cap11-icon"></i>
+  </div>
+
+  <div class="col-lg-1">
+        <p>cap12</p>
+    <i class="fas fa-circle fa-3x " id="cap12-icon"></i>
+  </div>
+</div>
+
+</div>
 {% endblock content %}

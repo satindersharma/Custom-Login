@@ -1,1 +1,53 @@
-realtimectx_volt1_line, realtimectx_amp1_line, realtimectx_kw1_line, realtimectx_pf1_line, realtimectx_kvar1_line, realtimectx_volt2_line, realtimectx_amp2_line, realtimectx_kw2_line, realtimectx_pf2_line, realtimectx_kvar2_line, realtimectx_kva2_line, realtimectx_volt3_line, realtimectx_amp3_line, realtimectx_kw3_line, realtimectx_pf3_line, realtimectx_kvar3_line, realtimectx_kva3_line
+
+<div class="row">
+  <div class="col-lg-1">
+    <p>clo1</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+    <p>rct1</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>clo2</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>rct2</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+        <p>clo3</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+
+  <div class="col-lg-1">
+        <p>rct3</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+    <div class="col-lg-1">
+    <p>clo1</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+    <p>rct1</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>clo2</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+       <p>rct2</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+  <div class="col-lg-1">
+        <p>clo3</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+
+  <div class="col-lg-1">
+        <p>rct3</p>
+    <i class="fas fa-circle fa-3x"></i>
+  </div>
+</div>

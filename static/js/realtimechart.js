@@ -2,7 +2,7 @@ var endpoint = "/last/";
 var defaultData = [];
 var defaultlabel = [];
 var flag = 1;
-function fetchdata() {
+async function fetchdata() {
   $.ajax({
     method: "GET",
     url: endpoint,
@@ -24,6 +24,7 @@ function fetchdata() {
     setChart();
   } else {
     addData();
+    changeIcon();
   }
 }
 
@@ -45,7 +46,7 @@ var realtimectx_volt1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -105,7 +106,7 @@ var realtimectx_amp1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -164,7 +165,7 @@ var realtimectx_kw1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
 
     animation: false,
@@ -219,7 +220,7 @@ var realtimectx_pf1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -273,7 +274,7 @@ var realtimectx_kvar1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -327,7 +328,7 @@ var realtimectx_kva1_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -382,7 +383,7 @@ var realtimectx_volt2_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -436,7 +437,7 @@ var realtimectx_amp2_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -543,7 +544,7 @@ var realtimectx_pf2_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -650,7 +651,7 @@ var realtimectx_kva2_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -757,7 +758,7 @@ var realtimectx_amp3_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -811,7 +812,7 @@ var realtimectx_kw3_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -865,7 +866,7 @@ var realtimectx_pf3_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -969,7 +970,7 @@ var realtimectx_kva3_config = {
   },
 
   options: {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
     animation: false,
     tooltips: {
@@ -1083,7 +1084,29 @@ var ctx_line = [
   realtimectx_kva3_line,
 ];
 
-function setChart() {
+
+var clo1_icon = document.getElementById("clo1-icon");
+var rct1_icon = document.getElementById("rct1-icon");
+var clo2_icon = document.getElementById("clo2-icon");
+var rct2_icon = document.getElementById("rct2-icon");
+var clo3_icon = document.getElementById("clo3-icon");
+var rct3_icon = document.getElementById("rct3-icon");
+var cap1_icon = document.getElementById("cap1-icon");
+var cap2_icon = document.getElementById("cap2-icon");
+var cap3_icon = document.getElementById("cap3-icon");
+var cap4_icon = document.getElementById("cap4-icon");
+var cap5_icon = document.getElementById("cap5-icon");
+var cap6_icon = document.getElementById("cap6-icon");
+var cap7_icon = document.getElementById("cap7-icon");
+var cap8_icon = document.getElementById("cap8-icon");
+var cap9_icon = document.getElementById("cap9-icon");
+var ca10_icon = document.getElementById("ca10-icon");
+var cap11_icon = document.getElementById("cap11-icon");
+var cap12_icon = document.getElementById("cap12-icon");
+var other_array = ["clo1", "rct1", "clo2", "rct2", "cap1", "cap2", "cap3", "cap4", "cap5", "cap6", "cap7", "cap8", "cap9", "cap10", "cap11", "cap12"]
+var icon_array = [clo1_icon, rct1_icon, clo2_icon, rct2_icon, clo3_icon, rct3_icon, cap1_icon, cap2_icon, cap3_icon, cap4_icon, cap5_icon, cap6_icon, cap7_icon, cap8_icon, cap9_icon, ca10_icon, cap11_icon, cap12_icon]
+
+async function setChart() {
   // realtime
   ctx_id.forEach(function (item, index) {
     if (item != null) {
@@ -1098,7 +1121,7 @@ function setChart() {
   });
 }
 
-function addData() {
+async function addData() {
   ctx_config.forEach(function (item, index) {
     if (item.data.labels.includes(defaultData[1])) {
       console.log("label length" + item.data.labels.length);
@@ -1119,7 +1142,17 @@ function addData() {
   });
 }
 
-function removeData() {
+function changeIcon(){
+  other_array.forEach(function (item, index){
+    if(defaultlabel.includes(item)){
+      icon_array[index].style.color = "red";
+
+    }
+  });
+}
+
+
+async function removeData() {
   ctx_config.forEach(function (item, index) {
     item.data.labels.shift();
     item.data.datasets.forEach((dataset) => {
@@ -1129,7 +1162,10 @@ function removeData() {
   });
 }
 
+function fetchdataa(){
+  console.log('helllow')
+}
 $(document).ready(function () {
   // var ctx = document.getElementById("myChart");
-  setInterval(fetchdata, 2000);
+  setInterval(fetchdata, 4000);
 });
