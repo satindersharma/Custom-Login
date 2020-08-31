@@ -11,7 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CelecUserProject.settings')
 django.setup()
 
 
-def random_data(ne=20, es=2):
+def random_data(ne=20, es=3):
     for _ in range(ne):
         data = {
             "date_time": timezone.now(),

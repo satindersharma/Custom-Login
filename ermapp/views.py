@@ -103,11 +103,12 @@ class HomeView(View):
 
 
 class SeparateChartView(TemplateView):
-    template_name = 'Realtime-chart.html'
+    template_name = 'Separate-chart.html'
+    
 
 
 class RealtimeChartView(TemplateView):
-    template_name = 'Separate-chart.html'
+    template_name = 'Realtime-chart.html'
 
 
 def get_data(request, *args, **kwargs):
