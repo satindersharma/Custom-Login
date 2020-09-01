@@ -25,26 +25,25 @@
 .colrct, .capclass {
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.6);
+  padding: 5px 5px 5px 15px;
 }
-.colrct{
-  padding:5px 5px 5px 30px;
-}
-.capclass{
-  padding:5px 5px 5px 56px;
-}
+
 .colrct span,  .capclass span {
     position: absolute;
     text-align: center;
-    margin: 0 auto;
     margin-left: 8px;
 
 }
 .colrct i, .capclass i {
     position: relative;
     text-align: center;
-    margin: 0 auto;
     margin-top:20px;
+    margin-right:4px;
     font-size:40px;
+}
+
+.capclass i{
+  margin-right:7px;
 }
 
 </style>
@@ -53,7 +52,7 @@
 
 <div class="container-fluid">
   <div class="row canvasclass">
-    <div class="col-lg-2 "></div>
+    <div class="col-lg-3 "></div>
     <div class="col-lg-2 colrct">
       <span>clo1</span>
       <i class="fas fa-circle fa-3x" id="clo1-icon"></i>
@@ -69,7 +68,7 @@
       <i class="fas fa-circle fa-3x" id="rct3-icon"></i>
     </div>
 
-    <div class="col-lg-1 "></div>
+    <div class="col-sm-1 "></div>
 
     <div class="col-lg-4 capclass">
 
@@ -108,7 +107,7 @@
       <i class="fas fa-circle fa-3x" id="cap12-icon"></i>
     </div>
     
-    <div class="col-lg-2 "></div>
+    <div class="col-lg-1"></div>
   </div>
 </div>
 

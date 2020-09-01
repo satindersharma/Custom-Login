@@ -65,13 +65,14 @@ var realtimectx_volt1_config = {
           ticks: {
             display: true,
             autoskip: false,
-            maxTicksLimit: 20,
+            min: 5,
           },
           time: {
             unit: "second",
           },
-          offsetGridLines: true,
-        },
+          offsetGridLines: true
+          
+        }
       ],
       yAxes: [
         {
@@ -79,7 +80,8 @@ var realtimectx_volt1_config = {
           scaleLabel: {
             display: true,
             labelString: "Volt1",
-          },
+          }
+
         },
       ],
     },
