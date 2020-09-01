@@ -39,24 +39,24 @@ slim is missing ajax -->
 {% comment %}
 
 <script src="{% static 'magen/js/dashboard.js' %}"></script>
-{% endcomment %} 
-{% comment %}
+{% endcomment %} {% comment %}
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
   integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
   crossorigin="anonymous"
 ></script>
 
-{% url 'realtime' as realtime_url %}
-{% if request.path == realtime_url %}
-{% endif %}
-
-{% endcomment %}
+{% url 'realtime' as realtime_url %} {% if request.path == realtime_url %} {%
+endif %} {% endcomment %}
 <!-- My Custom JS -->
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/utils.js' %}"></script>
 <script src="{% static 'js/comperisionchartjsmainfile.js' %}"></script>
 <script src="{% static 'js/chartjsmainfile.js' %}"></script>
+{% url 'realtime' as realtime_url %} 
+
+{% if request.path == realtime_url %}
 
 <script src="{% static 'js/realtimechart.js' %}"></script>
 
+{% endif %}

@@ -1,6 +1,8 @@
 var endpoint = "/last/";
 var defaultData = [];
 var defaultlabel = [];
+var requireData = [];
+var requireIconData = [];
 var flag = 1;
 async function fetchdata() {
   $.ajax({
@@ -10,6 +12,8 @@ async function fetchdata() {
     success: function (data) {
       defaultlabel = Object.keys(data);
       defaultData = Object.values(data);
+      requireIconData = Object.values(data);
+      // console.log(defaultData);
       setChart();
       flag = 0;
     },
@@ -70,9 +74,8 @@ var realtimectx_volt1_config = {
           time: {
             unit: "second",
           },
-          offsetGridLines: true
-          
-        }
+          offsetGridLines: true,
+        },
       ],
       yAxes: [
         {
@@ -80,8 +83,7 @@ var realtimectx_volt1_config = {
           scaleLabel: {
             display: true,
             labelString: "Volt1",
-          }
-
+          },
         },
       ],
     },
@@ -1101,6 +1103,7 @@ var cap9_icon = document.getElementById("cap9-icon");
 var ca10_icon = document.getElementById("ca10-icon");
 var cap11_icon = document.getElementById("cap11-icon");
 var cap12_icon = document.getElementById("cap12-icon");
+
 var other_array = [
   "clo1",
   "rct1",
@@ -1142,6 +1145,46 @@ var icon_array = [
   cap12_icon,
 ];
 
+var volt1_span = document.getElementById("volt1-span");
+var amp1_span = document.getElementById("amp1-span");
+var kw1_span = document.getElementById("kw1-span");
+var pf1_span = document.getElementById("pf1-span");
+var kvar1_span = document.getElementById("kvar1-span");
+var kva1_span = document.getElementById("kva1-span");
+var volt2_span = document.getElementById("volt2-span");
+var amp2_span = document.getElementById("amp2-span");
+var kw2_span = document.getElementById("kw2-span");
+var pf2_span = document.getElementById("pf2-span");
+var kvar2_span = document.getElementById("kvar2-span");
+var kva2_span = document.getElementById("kva2-span");
+var volt3_span = document.getElementById("volt3-span");
+var amp3_span = document.getElementById("amp3-span");
+var kw3_span = document.getElementById("kw3-span");
+var pf3_span = document.getElementById("pf3-span");
+var kvar3_span = document.getElementById("kvar3-span");
+var kva3_span = document.getElementById("kva3-span");
+
+var realtime_value_array = [
+  volt1_span,
+  amp1_span,
+  kw1_span,
+  pf1_span,
+  kvar1_span,
+  kva1_span,
+  volt2_span,
+  amp2_span,
+  kw2_span,
+  pf2_span,
+  kvar2_span,
+  kva2_span,
+  volt3_span,
+  amp3_span,
+  kw3_span,
+  pf3_span,
+  kvar3_span,
+  kva3_span,
+];
+
 async function setChart() {
   // realtime
   ctx_id.forEach(function (item, index) {
@@ -1158,14 +1201,20 @@ async function setChart() {
 }
 
 async function addData() {
+  var requireData = defaultData;
+  requireData.splice(7, 2); // removing clo1 and rct1
+  requireData.splice(14, 2); // removing clo2 and rct2
+  requireData.splice(20, 20); // removing clo3 and so on
+  // ShowRealtimeValue(requireData);
+  // console.log(requireData);
   ctx_config.forEach(function (item, index) {
-    if (item.data.labels.includes(defaultData[1])) {
+    if (item.data.labels.includes(requireData[1])) {
       return false;
     } else {
       if (item.data.labels.length == 10) {
         item.data.labels.shift();
       }
-      item.data.labels.push(defaultData[1]);
+      item.data.labels.push(requireData[1]);
 
       // item.data.datasets.label = defaultlabel[index + 2] + ' ' + defaultData[index + 2]
 
@@ -1173,34 +1222,42 @@ async function addData() {
         if (item.data.labels.length == 10) {
           dataset.data.shift();
         }
-        dataset.data.push(defaultData[index + 2]);
+        dataset.data.push(requireData[index + 2]);
+
+        // console.log(defaultlabel[index + 2] + " " + requireData[index + 2]);
       });
+
       // chart.update();
     }
+    // console.log(requireData);
+    realtime_value_array[index].innerHTML = requireData[index + 2];
     window.ctx_line[index].update();
+    // realtime_value_array[index].innerHTML = requireData[index + 2] + "";
   });
 }
+
+// async function ShowRealtimeValue(data) {
+//   console.log(data);
+//   realtime_value_array.forEach(function (item1, index1) {
+//     item1.innerHTML = data[index1 + 2];
+//   });
+// }
 
 async function changeIcon() {
-  other_array.forEach(function (item, index) {
-    if (defaultlabel.includes(item)) {
-      if (defaultData[index] == 0) {
-        console.log(defaultlabel[item]);
-        icon_array[index].style.color = "grey";
+  requireIconData.splice(0, 8);
+  requireIconData.splice(2, 6);
+  requireIconData.splice(4, 6);
+  // console.log(requireIconData);
+  icon_array.forEach(function (item, index) {
+    if (requireIconData[index] === 1) {
+      if (index < 6) {
+        item.style.color = "red";
       } else {
-        icon_array[index].style.color = "red";
+        item.style.color = "green";
       }
+    } else {
+      item.style.color = "grey";
     }
-  });
-}
-
-async function removeData() {
-  ctx_config.forEach(function (item, index) {
-    item.data.labels.shift();
-    item.data.datasets.forEach((dataset) => {
-      dataset.data.shift();
-    });
-    // window.ctx_line[index].update();
   });
 }
 
@@ -1209,5 +1266,5 @@ function fetchdataa() {
 }
 $(document).ready(function () {
   // var ctx = document.getElementById("myChart");
-  setInterval(fetchdata, 4000);
+  setInterval(fetchdata, 1000);
 });

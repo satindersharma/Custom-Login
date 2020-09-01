@@ -7,6 +7,7 @@
 @media (min-width: 1200px) { 
 
   canvas{
+    
   max-height: 300px !important;
   max-width: 600px !important;
 
@@ -19,7 +20,7 @@
   align-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top:10px;
+  padding-top:10px;
 }
 
 .colrct, .capclass {
@@ -32,7 +33,7 @@
     position: absolute;
     text-align: center;
     margin-left: 8px;
-
+    color:#000
 }
 .colrct i, .capclass i {
     position: relative;
@@ -46,6 +47,17 @@
   margin-right:7px;
 }
 
+.chart-contianer span{
+display: flex;
+position: relative;
+width: 25px;
+margin-bottom: -1%;
+margin-left: 80%;
+color:#000
+}
+
+
+
 </style>
 
 
@@ -53,7 +65,7 @@
 <div class="container-fluid">
   <div class="row canvasclass">
     <div class="col-lg-3 "></div>
-    <div class="col-lg-2 colrct">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 colrct">
       <span>clo1</span>
       <i class="fas fa-circle fa-3x" id="clo1-icon"></i>
       <span>rct1</span>
@@ -70,7 +82,7 @@
 
     <div class="col-sm-1 "></div>
 
-    <div class="col-lg-4 capclass">
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 capclass">
 
       <span>cap1</span>
       <i class="fas fa-circle fa-3x" id="cap1-icon"></i>
@@ -107,81 +119,95 @@
       <i class="fas fa-circle fa-3x" id="cap12-icon"></i>
     </div>
     
-    <div class="col-lg-1"></div>
+    <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
   </div>
 </div>
 
 
 
 
+<div class="container-fluid chart-contianer pd-t-10">
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="volt1-span"></span>
+      <canvas id="volt1-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="amp1-span"></span>
+      <canvas id="amp1-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kw1-span"></span>
+      <canvas id="kw1-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="pf1-span"></span>
+      <canvas id="pf1-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kvar1-span"></span>
+      <canvas id="kvar1-line-bar-canvas" height="300px"></canvas>
+    </div>
 
-<div class="container-fluid">
-<div class="row">
-  <div class="col-lg-2">
-    <canvas id="volt1-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="amp1-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="kw1-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="pf1-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="kvar1-line-bar-canvas" height="300px"></canvas>
-  </div>
-
-  <div class="col-lg-2">
-    <canvas id="kva1-line-bar-canvas" height="300px"></canvas>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-lg-2">
-    <canvas id="volt2-line-bar-canvas"  height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="amp2-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="kw2-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="pf2-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-lg-2">
-    <canvas id="kvar2-line-bar-canvas" height="300px"></canvas>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kva1-span"></span>
+      <canvas id="kva1-line-bar-canvas" height="300px"></canvas>
+    </div>
   </div>
 
-  <div class="col-lg-2">
-    <canvas id="kva2-line-bar-canvas" height="300px"></canvas>
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="volt2-span"></span>
+      <canvas id="volt2-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="amp2-span"></span>
+      <canvas id="amp2-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kw2-span"></span>
+      <canvas id="kw2-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="pf2-span"></span>
+      <canvas id="pf2-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kvar2-span"></span>
+      <canvas id="kvar2-line-bar-canvas" height="300px"></canvas>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+      <span id="kva2-span"></span>
+      <canvas id="kva2-line-bar-canvas" height="300px"></canvas>
+    </div>
   </div>
 
-</div>
 
-
-
-<div class="row">
-  <div class="col-lg-2">
+  <div class="row">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="volt3-span"></span>
     <canvas id="volt3-line-bar-canvas" height="300px"></canvas>
   </div>
-  <div class="col-lg-2">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="amp3-span"></span>
     <canvas id="amp3-line-bar-canvas" height="300px"></canvas>
   </div>
-  <div class="col-lg-2">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="kw3-span"></span>
     <canvas id="kw3-line-bar-canvas" height="300px"></canvas>
   </div>
-  <div class="col-lg-2">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="pf3-span"></span>
     <canvas id="pf3-line-bar-canvas" height="300px"></canvas>
   </div>
-  <div class="col-lg-2">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="kvar3-span"></span>
     <canvas id="kvar3-line-bar-canvas" height="300px"></canvas>
   </div>
 
-  <div class="col-lg-2">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+  <span id="kva3-span"></span>
     <canvas id="kva3-line-bar-canvas" height="300px"></canvas>
   </div>
 

@@ -69,6 +69,6 @@ if __name__ == '__main__':
         if len(argv) == 2:
             random_data(ne=int(argv[1]))
         else:
-            random_data(ne=int(argv[1]), es=argv[2])
+            random_data(ne=int(argv[1]), es=int(argv[2]))
     else:
         random_data()

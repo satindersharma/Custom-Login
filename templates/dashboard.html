@@ -5,23 +5,35 @@
     <!-- ##### MAIN PANEL ##### -->
     <div class="kt-mainpanel">
       <div class="kt-pagetitle">
-        <div class="col-lg-3">
+      <div class="col-lg-2">
+                <div class="form-group mg-b-10-force">
+                  <select class="form-control select2" data-placeholder="Select Device">
+                    <option label="Choose Duration"></option>
+                    <option value="USA" selected>Daily</option>
+                    <option value="UK">Weekly</option>
+                    <option value="China">Monthly</option>
+                    <option value="Japan">Yearly</option>
+                  </select>
+                </div>
+              </div>
+        <div class="col-lg-1">
           <h5>Dashboard</h5>
           </div>
-          <div class="col-lg-2">
+          <div class="col-lg-1">
           <h5>Device</h5>
           </div>
               <div class="col-lg-2">
                 <div class="form-group mg-b-10-force">
                   <select class="form-control select2" data-placeholder="Select Device">
-                    <option label="Choose country"></option>
-                    <option value="USA">Device 1</option>
+                    <option label="Choose Device"></option>
+                    <option value="USA" selected>Device 1</option>
                     <option value="UK">Device 2</option>
                     <option value="China">Device 3</option>
                     <option value="Japan">Device 4</option>
                   </select>
                 </div>
-              </div><!-- col-4 -->
+              </div
+              ><!-- col-4 -->
 
 
       </div><!-- kt-pagetitle -->
@@ -29,19 +41,19 @@
       <div class="kt-pagebody">
 
         <div class="row row-sm">
-          <div class="col-lg-8">
+          <div class="col-lg-12">
             <div class="row row-sm">
               <div class="col-lg-6">
                 <div class="card">
 
                   <div class="card-body pd-b-0">
                                   
-                    <img src="{% static 'magen/img/senc.svg' %}" width="60" class="card-icon"/>
+                    <img src="{% static 'magen/img/save-energy.svg' %}" width="60" class="card-icon"/>
                     
                     
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">sensors</h6>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Saving</h6>
                     
-                    <h2 class="tx-roboto tx-inverse">1,297 <small>Sensors</small></h2>
+                    <h2 class="tx-roboto tx-inverse">1,297 <small></small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> stability from yesterday</p>
                   </div>
                   
@@ -60,9 +72,9 @@
               <div class="col-lg-6">
                 <div class="card">
                   <div class="card-body pd-b-0">
-                    <img src="{% static 'magen/img/energy.svg' %}" width="60" class="card-icon"/>
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">energy</h6>
-                    <h2 class="tx-roboto tx-inverse">500 <small>Watt</small></h2>
+                    <img src="{% static 'magen/img/lightbulb.svg' %}" width="60" class="card-icon"/>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Usage</h6>
+                    <h2 class="tx-roboto tx-inverse">500 <small></small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs2" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
@@ -78,8 +90,8 @@
               <div class="col-lg-6">
                 <div class="card mg-t-20">
                   <div class="card-body pd-b-0 ">
-                            <img src="{% static 'magen/img/senc.svg' %}" width="60" class="card-icon"/>
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Devices Connection</h6>
+                            <img src="{% static 'magen/img/energy.svg' %}" width="60" class="card-icon"/>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Energy</h6>
                     <h2 class="tx-lato tx-inverse">100 <small>%</small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
@@ -93,9 +105,9 @@
               <div class="col-lg-6 mg-t-20">
                 <div class="card">
                   <div class="card-body pd-b-0">
-                    <img src="{% static 'magen/img/rain.svg' %}" width="60" class="card-icon"/>
+                    <img src="{% static 'magen/img/energy-1.svg' %}" width="60" class="card-icon"/>
                     <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Rains</h6>
-                    <h2 class="tx-roboto tx-inverse">5,298 <small>Litter</small></h2>
+                    <h2 class="tx-roboto tx-inverse">5,298 <small>Power Factor</small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs4" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
@@ -162,73 +174,9 @@
               </div><!-- col-6 -->
             </div><!-- row -->
 
-          </div><!-- col-8 -->
-          <div class="col-lg-4">
-            <div class="card pd-40 tx-center">
-              <div class="d-flex justify-content-center mg-b-30">
-                <img src="{% static 'magen/img/drone.svg' %}" class="wd-200" alt="" height="200">
-              </div>
-              <h6 class="tx-md-20 tx-inverse mg-b-20">PARROT DRONE</h6>
-              <a href="" class="btn btn-success btn-block">Connect</a>
-            </div><!-- card -->
+  
 
-            <div class="card mg-t-20">
-              <div class="card-header d-flex justify-content-between">
-                <span class="tx-uppercase tx-12 tx-medium tx-inverse">Team Recent Messages</span>
-                <a href="" class="tx-gray-600"><i class="icon ion-more"></i></a>
-                
-              </div><!-- card-header -->
-              <div class="list-group list-group-flush">
-                <div class="list-group-item">
-                  <div class="media">
-                    <img src="{% static 'magen/img/img1.jpg' %}" class="wd-30 rounded-circle" alt="">
-                    <div class="media-body mg-l-10">
-                      <h6 class="mg-b-0 tx-inverse tx-13">Natalia Lumaad</h6>
-                      <p class="mg-b-0 tx-gray-500 tx-12">an hour ago</p>
-                    </div><!-- media-body -->
-                  </div><!-- media -->
-                  <p class="mg-t-10 mg-b-0 tx-13">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</p>
-                </div><!-- list-group-item -->
-                <div class="list-group-item">
-                  <div class="media">
-                    <img src="{% static 'magen/img/img2.jpg' %}" class="wd-30 rounded-circle" alt="">
-                    <div class="media-body mg-l-10">
-                      <h6 class="mg-b-0 tx-inverse tx-13">Julia Grace Ceballos</h6>
-                      <p class="mg-b-0 tx-gray-500 tx-12">2 hours ago</p>
-                    </div><!-- media-body -->
-                  </div><!-- media -->
-                  <p class="mg-t-10 mg-b-0 tx-13">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</p>
-                </div><!-- list-group-item -->
-                <div class="list-group-item">
-                  <div class="media">
-                    <img src="{% static 'magen/img/img4.jpg' %}" class="wd-30 rounded-circle" alt="">
-                    <div class="media-body mg-l-10">
-                      <h6 class="mg-b-0 tx-inverse tx-13">Rowella Sombrio</h6>
-                      <p class="mg-b-0 tx-gray-500 tx-12">3 hours ago</p>
-                    </div><!-- media-body -->
-                  </div><!-- media -->
-                  <p class="mg-t-10 mg-b-0 tx-13">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</p>
-                </div><!-- list-group-item -->
-              </div><!-- list-group -->
-              <div class="card-footer">
-                <a href="" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show all messages</a>
-              </div><!-- card-footer -->
-            </div><!-- card -->
-
-            <div class="card card-body pd-20 mg-t-20">
-              <h6 class="card-body-title tx-12 tx-spacing-1">Get Connected</h6>
-              <p>Just select any of your available social account to get started.</p>
-              <div class="tx-20">
-                <a href="" class="tx-primary mg-r-5"><i class="fa fa-facebook"></i></a>
-                <a href="" class="tx-info mg-r-5"><i class="fa fa-twitter"></i></a>
-                <a href="" class="tx-danger mg-r-5"><i class="fa fa-google-plus"></i></a>
-                <a href="" class="tx-danger mg-r-5"><i class="fa fa-pinterest"></i></a>
-                <a href="" class="tx-inverse mg-r-5"><i class="fa fa-github"></i></a>
-                <a href="" class="tx-pink mg-r-5"><i class="fa fa-instagram"></i></a>
-              </div>
-            </div><!-- card -->
-
-          </div><!-- col-4 -->
+          </div><!-- col-sm -->
         </div><!-- row -->
       </div><!-- kt-pagebody -->
       
