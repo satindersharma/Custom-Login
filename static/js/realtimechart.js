@@ -10,10 +10,7 @@ async function fetchdata() {
     success: function (data) {
       defaultlabel = Object.keys(data);
       defaultData = Object.values(data);
-      console.log(new Date(defaultData[1]));
-      console.log(defaultData[2]);
       setChart();
-
       flag = 0;
     },
     error: function (error_data) {
@@ -1084,7 +1081,6 @@ var ctx_line = [
   realtimectx_kva3_line,
 ];
 
-
 var clo1_icon = document.getElementById("clo1-icon");
 var rct1_icon = document.getElementById("rct1-icon");
 var clo2_icon = document.getElementById("clo2-icon");
@@ -1103,8 +1099,46 @@ var cap9_icon = document.getElementById("cap9-icon");
 var ca10_icon = document.getElementById("ca10-icon");
 var cap11_icon = document.getElementById("cap11-icon");
 var cap12_icon = document.getElementById("cap12-icon");
-var other_array = ["clo1", "rct1", "clo2", "rct2", "cap1", "cap2", "cap3", "cap4", "cap5", "cap6", "cap7", "cap8", "cap9", "cap10", "cap11", "cap12"]
-var icon_array = [clo1_icon, rct1_icon, clo2_icon, rct2_icon, clo3_icon, rct3_icon, cap1_icon, cap2_icon, cap3_icon, cap4_icon, cap5_icon, cap6_icon, cap7_icon, cap8_icon, cap9_icon, ca10_icon, cap11_icon, cap12_icon]
+var other_array = [
+  "clo1",
+  "rct1",
+  "clo2",
+  "rct2",
+  "clo3",
+  "rct3",
+  "cap1",
+  "cap2",
+  "cap3",
+  "cap4",
+  "cap5",
+  "cap6",
+  "cap7",
+  "cap8",
+  "cap9",
+  "cap10",
+  "cap11",
+  "cap12",
+];
+var icon_array = [
+  clo1_icon,
+  rct1_icon,
+  clo2_icon,
+  rct2_icon,
+  clo3_icon,
+  rct3_icon,
+  cap1_icon,
+  cap2_icon,
+  cap3_icon,
+  cap4_icon,
+  cap5_icon,
+  cap6_icon,
+  cap7_icon,
+  cap8_icon,
+  cap9_icon,
+  ca10_icon,
+  cap11_icon,
+  cap12_icon,
+];
 
 async function setChart() {
   // realtime
@@ -1124,33 +1158,39 @@ async function setChart() {
 async function addData() {
   ctx_config.forEach(function (item, index) {
     if (item.data.labels.includes(defaultData[1])) {
-      console.log("label length" + item.data.labels.length);
       return false;
     } else {
+      if (item.data.labels.length == 10) {
+        item.data.labels.shift();
+      }
       item.data.labels.push(defaultData[1]);
+
       // item.data.datasets.label = defaultlabel[index + 2] + ' ' + defaultData[index + 2]
 
       item.data.datasets.forEach((dataset) => {
+        if (item.data.labels.length == 10) {
+          dataset.data.shift();
+        }
         dataset.data.push(defaultData[index + 2]);
       });
       // chart.update();
-    }
-    if (item.data.labels.length == 5) {
-      removeData();
     }
     window.ctx_line[index].update();
   });
 }
 
-function changeIcon(){
-  other_array.forEach(function (item, index){
-    if(defaultlabel.includes(item)){
-      icon_array[index].style.color = "red";
-
+async function changeIcon() {
+  other_array.forEach(function (item, index) {
+    if (defaultlabel.includes(item)) {
+      if (defaultData[index] == 0) {
+        console.log(defaultlabel[item]);
+        icon_array[index].style.color = "grey";
+      } else {
+        icon_array[index].style.color = "red";
+      }
     }
   });
 }
-
 
 async function removeData() {
   ctx_config.forEach(function (item, index) {
@@ -1162,8 +1202,8 @@ async function removeData() {
   });
 }
 
-function fetchdataa(){
-  console.log('helllow')
+function fetchdataa() {
+  console.log("helllow");
 }
 $(document).ready(function () {
   // var ctx = document.getElementById("myChart");
