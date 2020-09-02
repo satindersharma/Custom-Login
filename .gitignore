@@ -12,7 +12,7 @@ include/
 # ProjectDjangoAdmin/__pycache__
 users/__pycache__
 users/migrations
-
+changed_data.json
 
 # Not Ready for Production
 # marketing/

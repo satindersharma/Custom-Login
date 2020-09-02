@@ -8,6 +8,12 @@ class DashboardTableSerializer(ModelSerializer):
         model = DashboardTable
         fields = '__all__'
 
+class DashSerializer(ModelSerializer):
+
+    class Meta:
+        model = DashboardTable
+        fields = '__all__'
+
 class ProductSerializer(ModelSerializer):
 
     class Meta:

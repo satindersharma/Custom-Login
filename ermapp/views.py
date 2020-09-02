@@ -18,7 +18,7 @@ from rest_framework.views import APIView
 
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import S1902000403, DashboardTable
-from ermapp.serializers import ProductSerializer, ExProductSerializer, DashboardTableSerializer
+from ermapp.serializers import ProductSerializer, ExProductSerializer, DashboardTableSerializer, DashSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.views.generic import View
@@ -48,6 +48,13 @@ class ExProductLastAPIView(APIView):
         # print(serializer.data.get('id'))
         return Response(serializer.data)
 
+
+class DashLastAPIView(APIView):
+    def get(self, request, format=None):
+        qs = DashboardTable.objects.latest()
+        serializer = DashSerializer(qs)
+        # print(serializer.data.get('id'))
+        return Response(serializer.data)
 
 class ProductLastAPIView(APIView):
     def get(self, request, format=None):

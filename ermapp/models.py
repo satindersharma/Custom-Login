@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class S1902000403(models.Model):
     # Field name made lowercase.
     srl = models.AutoField(db_column='SRL', primary_key=True)
@@ -96,3 +97,6 @@ class DashboardTable(models.Model):
     power_factor = models.IntegerField()
     thd = models.IntegerField()
     tdi = models.IntegerField()
+
+    class Meta:
+        get_latest_by = 'id'

@@ -5,6 +5,7 @@ urlpatterns = [
     path('all/', views.ProductLilstAPIView.as_view(), name='all'),
     path('dash/', views.DashLilstAPIView.as_view(), name='dashdata'),
     path('json/', views.ProductLilstJsonAPIView.as_view(), name='alljson'),
+    path('dl/', views.DashLastAPIView.as_view(), name='last'),
     path('last/', views.ProductLastAPIView.as_view(), name='last'),
     path('l/', views.ExProductLastAPIView.as_view(), name='last'),
     #  path('api/data/', views.get_data, name='api-data'),

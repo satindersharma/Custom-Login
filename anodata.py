@@ -1,3 +1,4 @@
+from ermapp.models import S1902000403, DashboardTable
 import django
 from django.db.models.functions import TruncDay, Now, TruncMonth, TruncYear, TruncHour
 from datetime import timedelta
@@ -16,13 +17,15 @@ django.setup()
 if you get DJANGO_SETTINGS_MODULE 
 the import your model after os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CelecUserProject.settings')
 '''
-from ermapp.models import S1902000403, DashboardTable
 
 one_day_ago = timezone.now() - timedelta(days=1)
 # day_ago = timezone.now() - timedelta(days=1)
 
-resnow = DashboardTable.objects.filter(date_time__gte=(timezone.now() - timedelta(days=1))).aggregate(Avg('energy'), Max('energy'), Min('energy'))
-resnow1 = DashboardTable.objects.filter(date_time__gte=(timezone.now() - timedelta(days=10))).values().aggregate(Avg('energy'), Max('energy'), Min('energy'))
+
+resnow = DashboardTable.objects.filter(date_time__gte=(timezone.now(
+) - timedelta(days=1))).aggregate(Avg('energy'), Max('energy'), Min('energy'))
+resnow1 = DashboardTable.objects.filter(date_time__gte=(timezone.now(
+) - timedelta(days=10))).values().aggregate(Avg('energy'), Max('energy'), Min('energy'))
 # resnow = DashboardTable.objects.values(date_time__gte=Now()).aggregate(Avg(energ = 'energy',power = 'power_factor'), Max('energy'), Min('energy'))
 print(resnow)
 print(resnow1)
