@@ -1,0 +1,50 @@
+@media (min-width: 1200px) {
+  .chart-contianer canvas {
+    max-height: 300px !important;
+    max-width: 600px !important;
+  }
+}
+
+.canvasclass {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.colrct,
+.capclass {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.6);
+  padding: 5px 5px 5px 15px;
+}
+
+.colrct span,
+.capclass span {
+  position: absolute;
+  text-align: center;
+  margin-left: 8px;
+  color: #000;
+}
+.colrct i,
+.capclass i {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  margin-right: 4px;
+  font-size: 33px;
+}
+
+.capclass i {
+  margin-right: 7px;
+}
+
+.chart-contianer span {
+  display: flex;
+  position: relative;
+  width: 25px;
+  margin-bottom: -1%;
+  margin-left: 80%;
+  color: #000;
+}

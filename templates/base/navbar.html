@@ -1,5 +1,12 @@
 {% load static %}
 {% block content %}
+
+{% url 'dashboard' as dashboard_url %}
+{% url 'realtime' as realtime_url %}
+{% url 'comparision-dashboard' as comparision_dashboard_url %}
+
+
+
 <div class="kt-sideleft-header">
       {% comment %} <div class="kt-logo"><a href="index.html">Magen IOT <small>Administrator</small></a></div> {% endcomment %}
       <div class="kt-logo"><a href="{% url 'home' %}"><img class="" src="{% static 'images/logo-100.png' %}" style="width:100%; padding-top:20px;"></a></div>
@@ -18,12 +25,24 @@
     <div class="kt-sideleft">
       <label class="kt-sidebar-label">Navigation</label>
       <ul class="nav kt-sideleft-menu">
+
+        <!-- nav-item -->
         <li class="nav-item">
-          <a href="{% url 'dashboard' %}" class="nav-link active">
+          <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == dashboard_url %} active {% endif %}">
             <i class="icon ion-ios-home-outline"></i>
             <span>Dashboard</span>
           </a>
         </li>
+
+        <!-- nav-item -->
+        <li class="nav-item">
+          <a href="{% url 'realtime' %}" class="nav-link {% if request.path == realtime_url %} active {% endif %}">
+            <i class="icon ion-ios-clock-outline"></i>
+            <span>Realtime</span>
+          </a>
+        </li>
+
+
 
          <!-- nav-item -->
         <li class="nav-item">
@@ -32,7 +51,7 @@
             <span>Comparision</span>
           </a>
           <ul class="nav-sub">
-            <li class="nav-item"><a href="{% url 'comparision-dashboard' %}" class="nav-link">Comparision Dashboards</a></li>
+            <li class="nav-item"><a href="{% url 'comparision-dashboard' %}" class="nav-link {% if request.path == comparision_dashboard_url %} active {% endif %}">Comparision Dashboards</a></li>
           </ul>
         </li>
 
@@ -51,6 +70,7 @@
         </li>
         
         <!-- nav-item -->
+        <!--
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
             <i class="icon ion-ios-clock-outline"></i>
@@ -65,7 +85,7 @@
             <li class="nav-item"><a href="{% static 'dashboard/modal.html' %}" class="nav-link">Conversions</a></li>
          </ul>
         </li>
-        
+          -->
 
         
         <!-- nav-item -->

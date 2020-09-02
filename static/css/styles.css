@@ -233,3 +233,11 @@ div#cdaily-line-bar-randomizeData,  div#cweekly-line-bar-canvas-randomizeData, d
   width: 30px;
   margin: 0 10px 0 auto;
 }
+
+
+
+
+.input-group.kt-input-search input.form-control{
+
+  height: 100%;
+}

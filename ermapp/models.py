@@ -87,4 +87,12 @@ class S1902000403(models.Model):
         db_table = 'S_19020004_03'
         get_latest_by = 'srl'
 
-    
+
+class DashboardTable(models.Model):
+    date_time = models.DateTimeField()
+    saving = models.IntegerField()
+    usage = models.IntegerField()
+    energy = models.IntegerField()
+    power_factor = models.IntegerField()
+    thd = models.IntegerField()
+    tdi = models.IntegerField()

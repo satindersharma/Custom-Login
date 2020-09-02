@@ -5,23 +5,37 @@
     <!-- ##### MAIN PANEL ##### -->
     <div class="kt-mainpanel">
       <div class="kt-pagetitle">
-          <div class="col-lg-3">
-          <h5>Comparision Dashboard</h5>
+      <div class="col-lg-2">
+                <div class="form-group mg-b-10-force">
+                  <select class="form-control select2" data-placeholder="Select Device">
+                    <option label="Choose Duration"></option>
+                    <option value="Daily" selected>Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                  </select>
+                </div>
+              </div>
+        <div class="col-lg-1">
+          <h5>Dashboard</h5>
           </div>
-          <div class="col-lg-2">
+          <div class="col-lg-1">
           <h5>Device</h5>
           </div>
               <div class="col-lg-2">
                 <div class="form-group mg-b-10-force">
                   <select class="form-control select2" data-placeholder="Select Device">
-                    <option label="Choose country"></option>
-                    <option value="USA">Device 1</option>
+                    <option label="Choose Device"></option>
+                    <option value="USA" selected>Device 1</option>
                     <option value="UK">Device 2</option>
                     <option value="China">Device 3</option>
                     <option value="Japan">Device 4</option>
                   </select>
                 </div>
-              </div><!-- col-4 -->
+              </div
+              ><!-- col-4 -->
+
+
       </div><!-- kt-pagetitle -->
 
       <div class="kt-pagebody">
@@ -37,34 +51,37 @@
                     <img src="{% static 'magen/img/save-energy.svg' %}" width="60" class="card-icon"/>
                     
                     
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">sensors</h6>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Saving</h6>
                     
-                    <h2 class="tx-roboto tx-inverse">1,297 <small>Sensors</small></h2>
+                    <h2 class="tx-roboto tx-inverse">1,297 <small></small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> stability from yesterday</p>
                   </div>
                   
                   <!-- card-body -->
                   {% comment %} <div id="rs1" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="btn btn-secondary btn-icon" id="cdaily-line-bar-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
-                  <div>
-                    <canvas  id="cdaily-line-bar-canvas"></canvas>
+                  <div class="combine-canvas">
+                      <div class="btn btn-secondary btn-icon" id="daily-line-bar-randomizeData"><i class="fas fa-sync-alt"></i></div>
+                    
+      
+                      <div>
+                        <canvas  id="daily-line-bar-canvas"></canvas>
+                      </div>
                   </div>
-                  
                   {% comment %} <button id="line-bar-addData">Add Data</button> {% endcomment %}
                 </div><!-- card -->
               </div><!-- col-6 -->
               <div class="col-lg-6">
                 <div class="card">
                   <div class="card-body pd-b-0">
-                    <img src="{% static 'magen/img/energy.svg' %}" width="60" class="card-icon"/>
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">energy</h6>
-                    <h2 class="tx-roboto tx-inverse">500 <small>Watt</small></h2>
+                    <img src="{% static 'magen/img/lightbulb.svg' %}" width="60" class="card-icon"/>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Usage</h6>
+                    <h2 class="tx-roboto tx-inverse">500 <small></small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs2" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="btn btn-secondary btn-icon" id="cweekly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
+                  <div class="btn btn-secondary btn-icon" id="weekly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></div>
                   <div>
-                    <canvas  id="cweekly-line-bar-canvas"></canvas>
+                    <canvas  id="weekly-line-bar-canvas"></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
@@ -74,36 +91,40 @@
               <div class="col-lg-6">
                 <div class="card mg-t-20">
                   <div class="card-body pd-b-0 ">
-                            <img src="{% static 'magen/img/lightbulb.svg' %}" width="60" class="card-icon"/>
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Devices Connection</h6>
+                            <img src="{% static 'magen/img/energy.svg' %}" width="60" class="card-icon"/>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Energy</h6>
                     <h2 class="tx-lato tx-inverse">100 <small>%</small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs3" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                                    <div class="btn btn-secondary btn-icon" id="cmonthly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
+                                    <div class="btn btn-secondary btn-icon" id="monthly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
                   <div>
-                    <canvas  id="cmonthly-line-bar-canvas"></canvas>
+                    <canvas  id="monthly-line-bar-canvas"></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
               <div class="col-lg-6 mg-t-20">
                 <div class="card">
                   <div class="card-body pd-b-0">
-                    <img src="{% static 'magen/img/energy.svg' %}" width="60" class="card-icon"/>
-                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Rains</h6>
-                    <h2 class="tx-roboto tx-inverse">5,298 <small>Litter</small></h2>
+                    <img src="{% static 'magen/img/energy-1.svg' %}" width="60" class="card-icon"/>
+                    <h6 class="card-body-title tx-12 tx-spacing-2 mg-b-20">Power Factor</h6>
+                    <h2 class="tx-roboto tx-inverse">5,298 <small></small></h2>
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs4" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="btn btn-secondary btn-icon" id="cyearly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
+                  <div class="btn btn-secondary btn-icon" id="yearly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
                   <div>
-                    <canvas  id="cyearly-line-bar-canvas"></canvas>
+                    <canvas  id="yearly-line-bar-canvas"></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
             </div><!-- row -->
 
-            <!-- card -->
+            <div class="card pd-20 pd-sm-40 mg-t-20">
+              <h6 class="card-body-title">Horizontal Bar Chart</h6>
+              <p class="mg-b-20 mg-sm-b-30">A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent.</p>
+              <canvas id="chartBar4" height="380"></canvas>
+            </div><!-- card -->
 
             <div class="row row-sm mg-t-20">
               <div class="col-lg-6">
@@ -154,8 +175,9 @@
               </div><!-- col-6 -->
             </div><!-- row -->
 
-          </div><!-- col-sm -->
+  
 
+          </div><!-- col-sm -->
         </div><!-- row -->
       </div><!-- kt-pagebody -->
       

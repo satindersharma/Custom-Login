@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% load static %} 
 {% block title %}Realtime Chart {% endblock title %}
  {% block content %}
-{% comment %}
 
-
+{% url 'separate-chart' as separate_chart_url %} 
+{% if request.path == separate_chart_url %}
 <script>
 
 var endpoint = '/last/'
@@ -82,17 +82,22 @@ var realtimectx_volt1_config = {
             scales: {
               xAxes: [
                 {
+                display: true,
+                scaleLabel: {
                   display: true,
-                  scaleLabel: {
-                    display: true,
-                  },type: 'time',
-                ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 20
-                }
-                  
                 },
-              ],
+                type: "time",
+                ticks: {
+                  display: true,
+                  autoskip: false,
+                  min: 5,
+                },
+                time: {
+                  unit: "second",
+                },
+                offsetGridLines: true,
+                      },
+                ],
               yAxes: [
                 {
                   display: true,
@@ -135,11 +140,11 @@ var realtimectx_volt1_config = {
       
 
 
-        setInterval(fetchdata,2000);
+        setInterval(fetchdata,1000);
     });
 
 </script>
-
+{% endif %}
 
 <div class="row">
   <div class="col-lg-2">
@@ -164,7 +169,7 @@ var realtimectx_volt1_config = {
 </div>
 
 
-{% endcomment %}
+
 
 
 

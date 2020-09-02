@@ -1,6 +1,12 @@
 from rest_framework.serializers import ModelSerializer
-from .models import S1902000403
+from .models import S1902000403, DashboardTable
 
+
+class DashboardTableSerializer(ModelSerializer):
+
+    class Meta:
+        model = DashboardTable
+        fields = '__all__'
 
 class ProductSerializer(ModelSerializer):
 

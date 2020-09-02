@@ -17,16 +17,18 @@ from django.http import (Http404, HttpResponse, HttpResponseRedirect,
 from rest_framework.views import APIView
 
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import S1902000403
-from ermapp.serializers import ProductSerializer, ExProductSerializer
+from .models import S1902000403, DashboardTable
+from ermapp.serializers import ProductSerializer, ExProductSerializer, DashboardTableSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
-from .filters import CustomFilter
+from .filters import CustomFilter, DashboardTableCustomFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
+
+
 class Home(TemplateView):
     template_name = "home.html"
 
@@ -37,6 +39,7 @@ class ProAnotateAPIView(APIView):
         serializer = ProductSerializer(qs)
         # print(serializer.data.get('id'))
         return Response(serializer.data)
+
 
 class ExProductLastAPIView(APIView):
     def get(self, request, format=None):
@@ -54,6 +57,17 @@ class ProductLastAPIView(APIView):
         return Response(serializer.data)
 
 
+class DashLilstAPIView(ListAPIView):
+    queryset = DashboardTable.objects.all()
+    serializer_class = DashboardTableSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = DashboardTableCustomFilter
+    filterset_fields = ['date_time']
+    # ordering_fields = ['date_time', 'srl']
+    # filterset_class = CustomFilter
+    ordering = ['date_time']
+
+
 class ProductLilstAPIView(ListAPIView):
     queryset = S1902000403.objects.all()
     serializer_class = ProductSerializer
@@ -63,6 +77,7 @@ class ProductLilstAPIView(ListAPIView):
     # ordering_fields = ['date_time', 'srl']
     filterset_class = CustomFilter
     ordering = ['date_time']
+
 
 class ProductLilstJsonAPIView(ListAPIView):
     queryset = S1902000403.objects.all()
@@ -83,8 +98,6 @@ class ProductLilstJsonAPIView(ListAPIView):
 #     serializer_class = ProductSerializer
 #     ordering = ['date_time']
 
-    
-
 
 class ProductRetriveAPIView(RetrieveAPIView):
     queryset = S1902000403.objects.all()
@@ -96,7 +109,6 @@ class ProductRetriveAPIView(RetrieveAPIView):
     #     return qs
 
 
-
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'charts.html', {"customers": 10})
@@ -104,7 +116,6 @@ class HomeView(View):
 
 class SeparateChartView(TemplateView):
     template_name = 'Separate-chart.html'
-    
 
 
 class RealtimeChartView(TemplateView):
@@ -116,7 +127,7 @@ def get_data(request, *args, **kwargs):
         "sales": 100,
         "customers": 10,
     }
-    return JsonResponse(data) # http response
+    return JsonResponse(data)  # http response
 
 
 class ChartData(APIView):
@@ -129,20 +140,10 @@ class ChartData(APIView):
         labels = ["Users", "Blue", "Yellow", "Green", "Purple", "Orange"]
         default_items = [qs_count, 23, 2, 3, 12, 2]
         data = {
-                "labels": labels,
-                "default": default_items,
+            "labels": labels,
+            "default": default_items,
         }
         return Response(data)
-
-
-
-
-
-
-
-
-
-
 
 
 class ProductLatestAPIView(APIView):

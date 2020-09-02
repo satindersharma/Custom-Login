@@ -1,5 +1,5 @@
 // where vme is the virtualenv folder name
 
 {
-  "python.pythonPath": "vme\\Scripts\\python.exe"
+  "python.defaultInterpreterPath": "vme\\Scripts\\python.exe"
 }

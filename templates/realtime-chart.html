@@ -2,222 +2,166 @@
 {% block title %}Realtime Chart {% endblock title %}
  {% block content %}
 
-<style>
+{% include "base/navbar.html" %}
 
-@media (min-width: 1200px) { 
+<div class="kt-mainpanel">
 
-  canvas{
-    
-  max-height: 300px !important;
-  max-width: 600px !important;
+  <div class="container-fluid">
+    <div class="row canvasclass">
+      <div class="col-lg-3 "></div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 colrct">
+        <span>clo1</span>
+        <i class="fas fa-circle fa-3x" id="clo1-icon"></i>
+        <span>rct1</span>
+        <i class="fas fa-circle fa-3x" id="rct1-icon"></i>
+        <span>clo2</span>
+        <i class="fas fa-circle fa-3x" id="clo2-icon"></i>
+        <span>rct2</span>
+        <i class="fas fa-circle fa-3x" id="rct2-icon"></i>
+        <span>clo3</span>
+        <i class="fas fa-circle fa-3x" id="clo3-icon"></i>
+        <span>rct3</span>
+        <i class="fas fa-circle fa-3x" id="rct3-icon"></i>
+      </div>
 
-}
- }
+      <div class="col-sm-1 "></div>
 
+      <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 capclass">
 
-.canvasclass {
-  display:flex;
-  align-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top:10px;
-}
-
-.colrct, .capclass {
-  border-radius: 10px;
-  box-shadow: 0 2px 5px 0 rgba(65, 132, 234, 0.6);
-  padding: 5px 5px 5px 15px;
-}
-
-.colrct span,  .capclass span {
-    position: absolute;
-    text-align: center;
-    margin-left: 8px;
-    color:#000
-}
-.colrct i, .capclass i {
-    position: relative;
-    text-align: center;
-    margin-top:20px;
-    margin-right:4px;
-    font-size:40px;
-}
-
-.capclass i{
-  margin-right:7px;
-}
-
-.chart-contianer span{
-display: flex;
-position: relative;
-width: 25px;
-margin-bottom: -1%;
-margin-left: 80%;
-color:#000
-}
-
-
-
-</style>
-
-
-
-<div class="container-fluid">
-  <div class="row canvasclass">
-    <div class="col-lg-3 "></div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 colrct">
-      <span>clo1</span>
-      <i class="fas fa-circle fa-3x" id="clo1-icon"></i>
-      <span>rct1</span>
-      <i class="fas fa-circle fa-3x" id="rct1-icon"></i>
-      <span>clo2</span>
-      <i class="fas fa-circle fa-3x" id="clo2-icon"></i>
-      <span>rct2</span>
-      <i class="fas fa-circle fa-3x" id="rct2-icon"></i>
-      <span>clo3</span>
-      <i class="fas fa-circle fa-3x" id="clo3-icon"></i>
-      <span>rct3</span>
-      <i class="fas fa-circle fa-3x" id="rct3-icon"></i>
-    </div>
-
-    <div class="col-sm-1 "></div>
-
-    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 capclass">
-
-      <span>cap1</span>
-      <i class="fas fa-circle fa-3x" id="cap1-icon"></i>
-    
-      <span>cap2</span>
-      <i class="fas fa-circle fa-3x" id="cap2-icon"></i>
-    
-      <span>cap3</span>
-      <i class="fas fa-circle fa-3x" id="cap3-icon"></i>
-    
-      <span>cap4</span>
-      <i class="fas fa-circle fa-3x" id="cap4-icon"></i>
-    
-      <span>cap5</span>
-      <i class="fas fa-circle fa-3x" id="cap5-icon"></i>
-      <span>cap6</span>
-      <i class="fas fa-circle fa-3x" id="cap6-icon"></i>
-      <span>cap7</span>
-      <i class="fas fa-circle fa-3x" id="cap7-icon"></i>
-    
-      <span>cap8</span>
-      <i class="fas fa-circle fa-3x" id="cap8-icon"></i>
-    
-      <span>ca9</span>
-      <i class="fas fa-circle fa-3x" id="cap9-icon"></i>
-    
-      <span>ca10</span>
-      <i class="fas fa-circle fa-3x" id="ca10-icon"></i>
-    
-      <span>cap11</span>
-      <i class="fas fa-circle fa-3x" id="cap11-icon"></i>
-    
-      <span>cap12</span>
-      <i class="fas fa-circle fa-3x" id="cap12-icon"></i>
-    </div>
-    
-    <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
-  </div>
-</div>
-
-
-
-
-<div class="container-fluid chart-contianer pd-t-10">
-  <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="volt1-span"></span>
-      <canvas id="volt1-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="amp1-span"></span>
-      <canvas id="amp1-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kw1-span"></span>
-      <canvas id="kw1-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="pf1-span"></span>
-      <canvas id="pf1-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kvar1-span"></span>
-      <canvas id="kvar1-line-bar-canvas" height="300px"></canvas>
-    </div>
-
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kva1-span"></span>
-      <canvas id="kva1-line-bar-canvas" height="300px"></canvas>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="volt2-span"></span>
-      <canvas id="volt2-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="amp2-span"></span>
-      <canvas id="amp2-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kw2-span"></span>
-      <canvas id="kw2-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="pf2-span"></span>
-      <canvas id="pf2-line-bar-canvas" height="300px"></canvas>
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kvar2-span"></span>
-      <canvas id="kvar2-line-bar-canvas" height="300px"></canvas>
-    </div>
-
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-      <span id="kva2-span"></span>
-      <canvas id="kva2-line-bar-canvas" height="300px"></canvas>
+        <span>cap1</span>
+        <i class="fas fa-circle fa-3x" id="cap1-icon"></i>
+      
+        <span>cap2</span>
+        <i class="fas fa-circle fa-3x" id="cap2-icon"></i>
+      
+        <span>cap3</span>
+        <i class="fas fa-circle fa-3x" id="cap3-icon"></i>
+      
+        <span>cap4</span>
+        <i class="fas fa-circle fa-3x" id="cap4-icon"></i>
+      
+        <span>cap5</span>
+        <i class="fas fa-circle fa-3x" id="cap5-icon"></i>
+        <span>cap6</span>
+        <i class="fas fa-circle fa-3x" id="cap6-icon"></i>
+        <span>cap7</span>
+        <i class="fas fa-circle fa-3x" id="cap7-icon"></i>
+      
+        <span>cap8</span>
+        <i class="fas fa-circle fa-3x" id="cap8-icon"></i>
+      
+        <span>ca9</span>
+        <i class="fas fa-circle fa-3x" id="cap9-icon"></i>
+      
+        <span>ca10</span>
+        <i class="fas fa-circle fa-3x" id="ca10-icon"></i>
+      
+        <span>cap11</span>
+        <i class="fas fa-circle fa-3x" id="cap11-icon"></i>
+      
+        <span>cap12</span>
+        <i class="fas fa-circle fa-3x" id="cap12-icon"></i>
+      </div>
+      
+      <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
   </div>
 
 
-  <div class="row">
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="volt3-span"></span>
-    <canvas id="volt3-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="amp3-span"></span>
-    <canvas id="amp3-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="kw3-span"></span>
-    <canvas id="kw3-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="pf3-span"></span>
-    <canvas id="pf3-line-bar-canvas" height="300px"></canvas>
-  </div>
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="kvar3-span"></span>
-    <canvas id="kvar3-line-bar-canvas" height="300px"></canvas>
-  </div>
 
-  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
-  <span id="kva3-span"></span>
-    <canvas id="kva3-line-bar-canvas" height="300px"></canvas>
-  </div>
 
-  </div>
+  <div class="container-fluid chart-contianer pd-t-10">
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="volt1-span"></span>
+        <canvas id="volt1-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="amp1-span"></span>
+        <canvas id="amp1-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kw1-span"></span>
+        <canvas id="kw1-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="pf1-span"></span>
+        <canvas id="pf1-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kvar1-span"></span>
+        <canvas id="kvar1-line-bar-canvas" height="300px"></canvas>
+      </div>
+
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kva1-span"></span>
+        <canvas id="kva1-line-bar-canvas" height="300px"></canvas>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="volt2-span"></span>
+        <canvas id="volt2-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="amp2-span"></span>
+        <canvas id="amp2-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kw2-span"></span>
+        <canvas id="kw2-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="pf2-span"></span>
+        <canvas id="pf2-line-bar-canvas" height="300px"></canvas>
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kvar2-span"></span>
+        <canvas id="kvar2-line-bar-canvas" height="300px"></canvas>
+      </div>
+
+      <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <span id="kva2-span"></span>
+        <canvas id="kva2-line-bar-canvas" height="300px"></canvas>
+      </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="volt3-span"></span>
+      <canvas id="volt3-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="amp3-span"></span>
+      <canvas id="amp3-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="kw3-span"></span>
+      <canvas id="kw3-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="pf3-span"></span>
+      <canvas id="pf3-line-bar-canvas" height="300px"></canvas>
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="kvar3-span"></span>
+      <canvas id="kvar3-line-bar-canvas" height="300px"></canvas>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+    <span id="kva3-span"></span>
+      <canvas id="kva3-line-bar-canvas" height="300px"></canvas>
+    </div>
+
+    </div>
+
+    </div>
 
   </div>
 
 </div>
-
-
 
 
 
