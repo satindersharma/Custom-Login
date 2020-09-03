@@ -16,6 +16,7 @@ for i in data:
     f = Faker('en_US')
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        i.date_time = f.past_datetime(start_date='-2d', tzinfo=None) # return one day  ago fake data
+        i.date_time = f.past_datetime(start_date='-7d', tzinfo=None) # return one day  ago fake data
+        
         # i.date_time = f.date_time_this_century(before_now=True, after_now=False, tzinfo=None)
         i.save()

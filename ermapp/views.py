@@ -27,7 +27,8 @@ from .filters import CustomFilter, DashboardTableCustomFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
-from .utils import daily_data
+from .utils import daily_data, weekly_data, monthly_data, yearly_data
+
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -56,6 +57,7 @@ class DashLastAPIView(APIView):
         # print(serializer.data.get('id'))
         return Response(serializer.data)
 
+
 class ProductLastAPIView(APIView):
     def get(self, request, format=None):
         qs = S1902000403.objects.latest()
@@ -73,7 +75,6 @@ class DashLilstAPIView(ListAPIView):
     # ordering_fields = ['date_time', 'srl']
     # filterset_class = CustomFilter
     ordering = ['date_time']
-
 
     def filter_queryset(self, queryset):
         filter_backends = [DjangoFilterBackend]
@@ -149,9 +150,12 @@ class RealtimeChartView(TemplateView):
 
 
 def get_data(request, *args, **kwargs):
-    data = daily_data()
-  
-    return JsonResponse(data,safe=False)  # http response
+    data = {'daily': daily_data(),
+            'weekly': weekly_data(),
+            'monthly': monthly_data(),
+            'yearly': yearly_data()
+            }
+    return JsonResponse(data)  # http response
 
 
 class ChartData(APIView):

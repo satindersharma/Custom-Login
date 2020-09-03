@@ -1,7 +1,7 @@
 import django
 from sys import argv
 import os
-# from django.utils import timezone
+from django.utils import timezone
 import random
 # from time import sleep
 from faker import Faker
@@ -17,7 +17,9 @@ def random_data(ne=50, es=3):
     for _ in range(ne):
         f = Faker('en_US')
         data = {
-            "date_time": f.date_time_this_century(before_now=True, after_now=False, tzinfo=None),
+            # "date_time": f.date_time_this_century(before_now=True, after_now=False, tzinfo=None),
+            "date_time": timezone.now(), 
+            # "date_time": f.past_datetime(start_date='-10d', tzinfo=None), # '-30d' for last 30 day data
             "saving": random.randrange(0, 101),
             "usage": random.randrange(0, 101),
             "energy": round(random.uniform(0, 101), 2),
