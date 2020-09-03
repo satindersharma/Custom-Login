@@ -100,3 +100,4 @@ class DashboardTable(models.Model):
 
     class Meta:
         get_latest_by = 'id'
+        ordering = ['-date_time']

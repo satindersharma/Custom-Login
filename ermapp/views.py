@@ -15,7 +15,7 @@ from django.http import (Http404, HttpResponse, HttpResponseRedirect,
 # i made a copyp of data after change
 # python manage.py dumpdata ermapp.S1902000403 --indent 4 > changed_data.json
 from rest_framework.views import APIView
-
+from django.db.models import Avg, Max, Min, Count
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import S1902000403, DashboardTable
 from ermapp.serializers import ProductSerializer, ExProductSerializer, DashboardTableSerializer, DashSerializer
@@ -27,7 +27,7 @@ from .filters import CustomFilter, DashboardTableCustomFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
-
+from .utils import daily_data
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -73,6 +73,25 @@ class DashLilstAPIView(ListAPIView):
     # ordering_fields = ['date_time', 'srl']
     # filterset_class = CustomFilter
     ordering = ['date_time']
+
+
+    def filter_queryset(self, queryset):
+        filter_backends = [DjangoFilterBackend]
+
+        if 'geo_route' in self.request.query_params:
+            filter_backends = [GeoRouteFilter, CategoryFilter]
+        elif 'geo_point' in self.request.query_params:
+            filter_backends = [GeoPointFilter, CategoryFilter]
+
+        for backend in list(filter_backends):
+            queryset = backend().filter_queryset(self.request, queryset, view=self)
+        # print('wala')
+        # print(queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi')))
+        # queryset = queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
+        # tt = queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
+        # print(tt)
+        # return JsonResponse(tt,safe=False)
+        return queryset
 
 
 class ProductLilstAPIView(ListAPIView):
@@ -130,11 +149,9 @@ class RealtimeChartView(TemplateView):
 
 
 def get_data(request, *args, **kwargs):
-    data = {
-        "sales": 100,
-        "customers": 10,
-    }
-    return JsonResponse(data)  # http response
+    data = daily_data()
+  
+    return JsonResponse(data,safe=False)  # http response
 
 
 class ChartData(APIView):

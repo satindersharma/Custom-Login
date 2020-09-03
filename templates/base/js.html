@@ -51,8 +51,13 @@ endif %} {% endcomment %}
 <!-- My Custom JS -->
 <script src="{% static 'js/main.js' %}"></script>
 <script src="{% static 'js/utils.js' %}"></script>
-<script src="{% static 'js/comperisionchartjsmainfile.js' %}"></script>
+<script src="{% static 'js/comperision-chartjs-mainfile.js' %}"></script>
+
+{% comment %}
 <script src="{% static 'js/chartjsmainfile.js' %}"></script>
+{% endcomment %}
+
+<script src="{% static 'js/chart-dashboard.js' %}"></script>
 
 {% url 'realtime' as realtime_url %} {% if request.path == realtime_url %}
 <script defer src="{% static 'js/realtimechart.js' %}"></script>

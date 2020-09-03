@@ -22,6 +22,8 @@ class DashboardTableCustomFilter(django_filters.FilterSet):
         field_name='date_time', lookup_expr='month', label='enter month')
     year = django_filters.NumberFilter(
         field_name='date_time', lookup_expr='year', label='enter year')
+    date_filter = django_filters.DateRangeFilter(
+        field_name='date_time', label='date choice', empty_label='choose range')
 
     class Meta:
         model = DashboardTable
