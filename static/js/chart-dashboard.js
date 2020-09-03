@@ -336,12 +336,86 @@ var yearlyconfig = {
 
 var combconfig = [dailyconfig, weeklyconfig, monthlyconfig, yearlyconfig];
 
-var combinectx = document.querySelectorAll("line-bar-canvas");
+// combinectx[0].getContext("2d");
+// window.dailyLine = new Chart(combinectx[0], dailyconfig);
+var dropselect = document.getElementById("dropdown-select-dashboard");
+var combinectx = document.getElementsByClassName("line-bar-canvas");
 
-combinectx.forEach(function (item, index) {
-  if (item != null) {
-    item.getContext("2d");
-    window.dailyLine = new Chart(item, dailyconfig);
-  }
+// function example(…) {
+//   return condition1 ? value1
+//        : condition2 ? value2
+//        : condition3 ? value3
+//        : value4;
+// }
+
+// Equivalent to:
+
+// function example(…) {
+//   if (condition1) { return value1; }
+//   else if (condition2) { return value2; }
+//   else if (condition3) { return value3; }
+//   else { return value4; }
+// }
+
+dropselect.addEventListener("change", (event) => {
+  // console.log( `You like ${event.target.value}`)
+  event.target.value == "Daily"
+    ? showchartdata(dailyconfig)
+    : event.target.value == "Weekly"
+    ? showchartdata(weeklyconfig)
+    : event.target.value == "Monthly"
+    ? showchartdata(monthlyconfig)
+    : event.target.value == "Yearly"
+    ? showchartdata(yearlyconfig)
+    : showchartdata(dailyconfig);
 });
 
+// Get option value :
+
+// var e = document.getElementById("country");
+// var result = e.options[e.selectedIndex].value;
+// alert(result); //ID002
+// Get option text :
+
+// var e = document.getElementById("country");
+// var result = e.options[e.selectedIndex].text;
+// alert(result); //United State
+
+var dailydashline = "";
+var weeklyashline = "";
+var monthlydashline = "";
+var yearlydashline = "";
+var dashline = [dailydashline, weeklyashline, monthlydashline, yearlydashline];
+// let sum = 0;
+function showchartdata(chconfig) {
+  let st = 0;
+  Array.prototype.forEach.call(combinectx, function (el) {
+    // window.dashline[st].destroy();
+    el.getContext("2d");
+    dashline[st] = new Chart(el, chconfig);
+    st++;
+  });
+}
+// function clearchart
+
+var endpoint = "/api/data/";
+var Data = [];
+var flag = 1;
+async function fetchdata() {
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    dataType: "json",
+    success: function (data) {
+      // defaultlabel = Object.keys(data);
+      // Data = Object.values(data);
+      // requireIconData = Object.values(data);
+      console.log(data["daily"]);
+    },
+    error: function (error_data) {
+      console.log("error");
+    },
+  });
+}
+fetchdata();
+showchartdata(dailyconfig);

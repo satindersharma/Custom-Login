@@ -7,7 +7,7 @@
       <div class="kt-pagetitle">
       <div class="col-lg-2">
                 <div class="form-group mg-b-10-force">
-                  <select class="form-control select2" data-placeholder="Select Device">
+                  <select class="form-control select2" data-placeholder="Select Device" id="dropdown-select-dashboard">
                     <option label="Choose Duration"></option>
                     <option value="Daily" selected>Daily</option>
                     <option value="Weekly">Weekly</option>
@@ -59,14 +59,11 @@
                   
                   <!-- card-body -->
                   {% comment %} <div id="rs1" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="combine-canvas">
-                      <div class="btn btn-secondary btn-icon" id="daily-line-bar-randomizeData"><i class="fas fa-sync-alt"></i></div>
-                    
+
       
                       <div>
-                        <canvas class="line-bar-canvas"  id="daily-line-bar-canvas"></canvas>
+                        <canvas class="line-bar-canvas" ></canvas>
                       </div>
-                  </div>
                   {% comment %} <button id="line-bar-addData">Add Data</button> {% endcomment %}
                 </div><!-- card -->
               </div><!-- col-6 -->
@@ -79,9 +76,8 @@
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs2" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="btn btn-secondary btn-icon" id="weekly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></div>
                   <div>
-                    <canvas class="line-bar-canvas" id="weekly-line-bar-canvas"></canvas>
+                    <canvas class="line-bar-canvas"></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
@@ -97,9 +93,8 @@
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs3" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                                    <div class="btn btn-secondary btn-icon" id="monthly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
                   <div>
-                    <canvas class="line-bar-canvas"  id="monthly-line-bar-canvas"></canvas>
+                    <canvas class="line-bar-canvas"></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
@@ -112,9 +107,8 @@
                     <p class="tx-12"><span class="tx-success">2.5%</span> change from yesterday</p>
                   </div><!-- card-body -->
                   {% comment %} <div id="rs4" class="ht-50 ht-sm-70 mg-r--1"></div> {% endcomment %}
-                  <div class="btn btn-secondary btn-icon" id="yearly-line-bar-canvas-randomizeData"><i class="fas fa-sync-alt"></i></i></div>
                   <div>
-                    <canvas class="line-bar-canvas" id="yearly-line-bar-canvas"></canvas>
+                    <canvas class="line-bar-canvas" ></canvas>
                   </div>
                 </div><!-- card -->
               </div><!-- col-6 -->
