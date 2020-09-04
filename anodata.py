@@ -110,7 +110,7 @@ def monthly_data():
     # mr= monthrange(now.year, now.month)
 
     for day_num in range(1,now.day+1):
-        time_dict = {"day": str(datetime(now.year,now.month,day_num))}
+        time_dict = {"time": str(datetime(now.year,now.month,day_num))}
         rerr = req_query.filter(date_time__day = day_num).aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
         rerr.update(time_dict)
         req_list.append(rerr)
@@ -135,7 +135,7 @@ def yearly_data():
     # mr= monthrange(now.year, now.month)
 
     for mon_num in range(1,now.month+1):
-        time_dict = {"month": mon_num}
+        time_dict = {"time": str(datetime(now.year,mon_num,1))}
         rerr = req_query.filter(date_time__month = mon_num).aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
         rerr.update(time_dict)
         req_list.append(rerr)
@@ -148,8 +148,8 @@ def yearly_data():
 
 # daily_data()
 # weekly_data()
-# monthly_data()
-yearly_data()
+monthly_data()
+# yearly_data()
 
 '''
 articles = metrics_models.Article.objects.filter(

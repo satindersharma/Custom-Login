@@ -14,6 +14,8 @@ import django_filters
 
 
 class DashboardTableCustomFilter(django_filters.FilterSet):
+    hour = django_filters.NumberFilter(
+        field_name='date_time', lookup_expr='hour', label='enter hour')
     day = django_filters.NumberFilter(
         field_name='date_time', lookup_expr='day', label='enter day')
     week = django_filters.NumberFilter(
@@ -27,7 +29,7 @@ class DashboardTableCustomFilter(django_filters.FilterSet):
 
     class Meta:
         model = DashboardTable
-        fields = ['day', 'week', 'month', 'year']
+        fields = ['hour', 'day', 'week', 'month', 'year']
 
 
 class CustomFilter(django_filters.FilterSet):

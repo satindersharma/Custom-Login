@@ -1,77 +1,16 @@
-var dailyconfig = {
+var endpoint = "/api/data/";
+var Data = [];
+var chartCreated = [];
+var saving_config = {
   type: "line",
   data: {
-    labels: [
-      "Mon 1",
-      "Tue 2",
-      "Wed 3",
-      "Thu 4",
-      "Fri 5",
-      "Sat 6",
-      "Sun 7",
-      "Mon 8",
-      "Tue 9",
-      "Wed 10",
-      "Thu 11",
-      "Fri 12",
-      "Sat 13",
-      "Sun 14",
-      "Mon 15",
-      "Tue 16",
-      "Wed 17",
-      "Thu 18",
-      "Fri 19",
-      "Sat 20",
-      "Sun 21",
-      "Mon 22",
-      "Tue 23",
-      "Wed 24",
-      "Thu 25",
-      "Fri 26",
-      "Sat 27",
-      "Sun 28",
-      "Mon 29",
-      "Tue 30",
-      "Wed 31",
-    ],
+    labels: [],
     datasets: [
       {
         label: "Daily dataset",
         backgroundColor: window.chartColors.red,
         borderColor: window.chartColors.red,
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
+        data: [],
         fill: false,
       },
     ],
@@ -97,7 +36,25 @@ var dailyconfig = {
           display: true,
           scaleLabel: {
             display: true,
-            labelString: "Days",
+          },
+          type: "time",
+          ticks: {
+            display: true,
+            autoSkip: false,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
           },
         },
       ],
@@ -114,109 +71,16 @@ var dailyconfig = {
   },
 };
 
-var weeklyconfig = {
-  type: "bar",
-  data: {
-    labels: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    datasets: [
-      {
-        label: "Weekly dataset",
-        backgroundColor: window.chartColors.orange,
-        borderColor: window.chartColors.orange,
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    // title: {
-    //   display: true,
-    //   text: "Chart.js Line Chart",
-    // },
-    tooltips: {
-      mode: "index",
-      intersect: false,
-    },
-    hover: {
-      mode: "nearest",
-      intersect: true,
-    },
-    scales: {
-      xAxes: [
-        {
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: "Week",
-          },
-        },
-      ],
-      yAxes: [
-        {
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: "Value",
-          },
-        },
-      ],
-    },
-  },
-};
-
-var monthlyconfig = {
+var usage_config = {
   type: "line",
   data: {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ],
+    labels: [],
     datasets: [
       {
-        label: "Monthly dataset",
-        backgroundColor: window.chartColors.blue,
-        borderColor: window.chartColors.blue,
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
+        label: "Daily dataset",
+        backgroundColor: window.chartColors.red,
+        borderColor: window.chartColors.red,
+        data: [],
         fill: false,
       },
     ],
@@ -227,6 +91,7 @@ var monthlyconfig = {
     //   display: true,
     //   text: "Chart.js Line Chart",
     // },
+
     tooltips: {
       mode: "index",
       intersect: false,
@@ -241,8 +106,26 @@ var monthlyconfig = {
           display: true,
           scaleLabel: {
             display: true,
-            labelString: "Month",
           },
+          type: "time",
+          ticks: {
+            display: true,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
+          },
+          offsetGridLines: true,
         },
       ],
       yAxes: [
@@ -257,42 +140,16 @@ var monthlyconfig = {
     },
   },
 };
-
-var yearlyconfig = {
+var energy_config = {
   type: "line",
   data: {
-    labels: [
-      "2010",
-      "2011",
-      "2012",
-      "2013",
-      "2014",
-      "2015",
-      "2016",
-      "2017",
-      "2018",
-      "2019",
-      "2020",
-    ],
+    labels: [],
     datasets: [
       {
-        label: "Yearly dataset",
-        lineTension: 0,
-        backgroundColor: window.chartColors.green,
-        borderColor: window.chartColors.green,
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-        ],
+        label: "Daily dataset",
+        backgroundColor: window.chartColors.red,
+        borderColor: window.chartColors.red,
+        data: [],
         fill: false,
       },
     ],
@@ -303,6 +160,7 @@ var yearlyconfig = {
     //   display: true,
     //   text: "Chart.js Line Chart",
     // },
+
     tooltips: {
       mode: "index",
       intersect: false,
@@ -317,7 +175,93 @@ var yearlyconfig = {
           display: true,
           scaleLabel: {
             display: true,
-            labelString: "Year",
+          },
+          type: "time",
+          ticks: {
+            display: true,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
+          },
+          offsetGridLines: true,
+        },
+      ],
+      yAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Value",
+          },
+        },
+      ],
+    },
+  },
+};
+var power_config = {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: "Daily dataset",
+        backgroundColor: window.chartColors.red,
+        borderColor: window.chartColors.red,
+        data: [],
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    // title: {
+    //   display: true,
+    //   text: "Chart.js Line Chart",
+    // },
+
+    tooltips: {
+      mode: "index",
+      intersect: false,
+    },
+    hover: {
+      mode: "nearest",
+      intersect: true,
+    },
+    scales: {
+      xAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+          },
+          type: "time",
+          ticks: {
+            display: true,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
           },
         },
       ],
@@ -334,88 +278,283 @@ var yearlyconfig = {
   },
 };
 
-var combconfig = [dailyconfig, weeklyconfig, monthlyconfig, yearlyconfig];
+var thd_config = {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: "Daily dataset",
+        backgroundColor: window.chartColors.red,
+        borderColor: window.chartColors.red,
+        data: [],
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    // title: {
+    //   display: true,
+    //   text: "Chart.js Line Chart",
+    // },
+
+    tooltips: {
+      mode: "index",
+      intersect: false,
+    },
+    hover: {
+      mode: "nearest",
+      intersect: true,
+    },
+    scales: {
+      xAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+          },
+          type: "time",
+          ticks: {
+            display: true,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
+          },
+          offsetGridLines: true,
+        },
+      ],
+      yAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Value",
+          },
+        },
+      ],
+    },
+  },
+};
+
+var tdi_config = {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: "Daily dataset",
+        backgroundColor: window.chartColors.red,
+        borderColor: window.chartColors.red,
+        data: [],
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    // title: {
+    //   display: true,
+    //   text: "Chart.js Line Chart",
+    // },
+
+    tooltips: {
+      mode: "index",
+      intersect: false,
+    },
+    hover: {
+      mode: "nearest",
+      intersect: true,
+    },
+    scales: {
+      xAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+          },
+          type: "time",
+          ticks: {
+            display: true,
+          },
+          time: {
+            unit: "",
+            displayFormats: {
+              millisecond: "h:mm:ss.SSS a",
+              second: "D MMM",
+              minute: "ddd D MMM",
+              hour: "ddd D MMM hA",
+              day: "ddd MMM D",
+              week: "ll",
+              month: "MMM YYYY",
+              quarter: "[Q]Q - YYYY",
+              year: "YYYY",
+            },
+          },
+          offsetGridLines: true,
+        },
+      ],
+      yAxes: [
+        {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Value",
+          },
+        },
+      ],
+    },
+  },
+};
+
+var combconfig = [
+  saving_config,
+  usage_config,
+  energy_config,
+  power_config,
+  thd_config,
+  tdi_config,
+];
 
 // combinectx[0].getContext("2d");
 // window.dailyLine = new Chart(combinectx[0], dailyconfig);
 var dropselect = document.getElementById("dropdown-select-dashboard");
-var combinectx = document.getElementsByClassName("line-bar-canvas");
+// var combinectx = document.getElementsByClassName("line-bar-canvas");
+var saving_id = document.getElementById("saving-line-bar-canvas");
+var usage_id = document.getElementById("usage-line-bar-canvas");
+var energy_id = document.getElementById("energy-line-bar-canvas");
+var power_factor_id = document.getElementById("power-factor-line-bar-canvas");
+var thd_id = document.getElementById("thd-line-bar-canvas");
+var tdi_id = document.getElementById("tdi-line-bar-canvas");
 
-// function example(…) {
-//   return condition1 ? value1
-//        : condition2 ? value2
-//        : condition3 ? value3
-//        : value4;
-// }
-
-// Equivalent to:
-
-// function example(…) {
-//   if (condition1) { return value1; }
-//   else if (condition2) { return value2; }
-//   else if (condition3) { return value3; }
-//   else { return value4; }
-// }
+var combinectx = [
+  saving_id,
+  usage_id,
+  energy_id,
+  power_factor_id,
+  thd_id,
+  tdi_id,
+];
 
 dropselect.addEventListener("change", (event) => {
-  // console.log( `You like ${event.target.value}`)
-  event.target.value == "Daily"
-    ? showchartdata(dailyconfig)
-    : event.target.value == "Weekly"
-    ? showchartdata(weeklyconfig)
-    : event.target.value == "Monthly"
-    ? showchartdata(monthlyconfig)
-    : event.target.value == "Yearly"
-    ? showchartdata(yearlyconfig)
-    : showchartdata(dailyconfig);
+  if (event.target.value) {
+    showchartdata(event.target.value);
+  } else {
+    // console.log("here it runs");
+    showchartdata("daily");
+  }
 });
 
-// Get option value :
+var saving_dash_line = "";
+var usage_dash_line = "";
+var energy_dash_line = "";
+var power_factor_dash_line = "";
+var thd_dash_line = "";
+var tdi_dash_line = "";
+var dashline = [
+  saving_dash_line,
+  usage_dash_line,
+  energy_dash_line,
+  power_factor_dash_line,
+  thd_dash_line,
+  tdi_dash_line,
+];
 
-// var e = document.getElementById("country");
-// var result = e.options[e.selectedIndex].value;
-// alert(result); //ID002
-// Get option text :
-
-// var e = document.getElementById("country");
-// var result = e.options[e.selectedIndex].text;
-// alert(result); //United State
-
-var dailydashline = "";
-var weeklyashline = "";
-var monthlydashline = "";
-var yearlydashline = "";
-var dashline = [dailydashline, weeklyashline, monthlydashline, yearlydashline];
-// let sum = 0;
-function showchartdata(chconfig) {
-  let st = 0;
-  Array.prototype.forEach.call(combinectx, function (el) {
-    // window.dashline[st].destroy();
-    el.getContext("2d");
-    dashline[st] = new Chart(el, chconfig);
-    st++;
-  });
-}
-// function clearchart
-
-var endpoint = "/api/data/";
-var Data = [];
-var flag = 1;
 async function fetchdata() {
   $.ajax({
     method: "GET",
     url: endpoint,
     dataType: "json",
     success: function (data) {
-      // defaultlabel = Object.keys(data);
-      // Data = Object.values(data);
-      // requireIconData = Object.values(data);
+      Data = data;
       console.log(data["daily"]);
+      // console.log(data["daily"][0]["time"]);
+      // showchartdata();
+      showchartdata();
     },
     error: function (error_data) {
-      console.log("error");
+      console.log(error_data);
     },
   });
 }
-fetchdata();
-showchartdata(dailyconfig);
+
+async function showchartdata(t = "daily") {
+  d_type = t.toLowerCase();
+
+  var requirechartData = Data[d_type];
+  console.log(requirechartData);
+  var requireDatakey = Object.keys(requirechartData[0]);
+
+  //   if(chartCreated.length <= 4 || chartCreated.length !== new Set(chartCreated).size) {
+  //     console.log("it should run")
+  //  }else{
+  //   console.log("it should not run")
+  //  }
+
+  combconfig.forEach(function (u, v) {
+    u.options.scales.xAxes[0].time.unit = "";
+    // console.log(u.data.labels.length);
+    u.data.labels.splice(0, u.data.labels.length);
+    
+    u.data.datasets.forEach((dataset) => {
+      dataset.data.splice(0, dataset.data.length);
+      // console.log(x)
+      // dataset.label = `${d_type} dataset`;
+    });
+
+    requirechartData.forEach(function (x, i) {
+      // console.log(x[requirechartData[i]]);
+
+      u.data.labels.push(x["time"]);
+      // chartCreated.push(x["time"]);
+
+      // u.data.datasets.data.push(x[requirechartData[i]]);
+      u.data.datasets.forEach((dataset) => {
+        dataset.data.push(x[requireDatakey[v]]);
+        // console.log(x)
+        dataset.label = `${d_type} dataset`;
+      });
+    });
+    // distroy previous chart
+    if (combinectx[v] != null) {
+      combinectx[v].getContext("2d");
+      if (window.dashline[v] != "" || window.dashline[v]) {
+        // console.log("distroying");
+        window.dashline[v].destroy();
+      }
+      // console.log(d_type);
+      d_type == "weekly"
+        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "day"),(u.data.datasets[0].backgroundColor = window.chartColors.lightergreen),
+        (u.data.datasets[0].borderColor = window.chartColors.lightergreen))
+        : d_type == "monthly"
+        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "day"),(u.data.datasets[0].backgroundColor = window.chartColors.bluegreen),
+          (u.data.datasets[0].borderColor = window.chartColors.bluegreen))
+        : d_type == "yearly"
+        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "month"),(u.data.datasets[0].backgroundColor = window.chartColors.cyan),
+        (u.data.datasets[0].borderColor = window.chartColors.cyan))
+        : ((u.type = "line"), (u.options.scales.xAxes[0].time.unit = "hour"));
+
+      window.dashline[v] = new Chart(combinectx[v], u);
+    }
+    // if (chartCreated.includes(x["time"])) {
+    //   console.log("already added");
+    // }
+  });
+}
+
+// function clearchart
+$(document).ready(function () {
+  // var ctx = document.getElementById("myChart");
+  fetchdata();
+});

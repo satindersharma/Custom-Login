@@ -13,13 +13,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CelecUserProject.settings')
 django.setup()
 
 
-def random_data(ne=50, es=3):
+def random_data(ne=100, es=3):
     for _ in range(ne):
         f = Faker('en_US')
         data = {
             # "date_time": f.date_time_this_century(before_now=True, after_now=False, tzinfo=None),
-            "date_time": timezone.now(), 
-            # "date_time": f.past_datetime(start_date='-10d', tzinfo=None), # '-30d' for last 30 day data
+            # "date_time": timezone.now(), 
+            # "date_time": f.past_datetime(start_date='-2d', tzinfo=None), # '-30d' for last 30 day data 0d means today
+            "date_time": f.date_time_this_year(before_now=True, after_now=False, tzinfo=None),
             "saving": random.randrange(0, 101),
             "usage": random.randrange(0, 101),
             "energy": round(random.uniform(0, 101), 2),

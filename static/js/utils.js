@@ -11,6 +11,12 @@ window.chartColors = {
   darkgrey: "rgb(28, 40, 51)",
   bluegreen: "rgb(23, 165, 137)",
   lightorage: "rgb(245, 176, 65)",
+  cyan: "rgba(6, 178, 183, 1)",
+  darkgreen: "rgba(13, 65, 66, 1)",
+  grass: "rgba(110, 185, 9, 1)",
+  lightyellow: "rgba(247, 215, 9, 1)",
+  pink: "rgba(255, 65, 157, 1)",
+  lightergreen: "rgba(158, 252, 128, 1)",
 };
 
 (function (global) {
