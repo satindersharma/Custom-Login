@@ -1,50 +1,60 @@
-{% load static %}
-{% block content %}
-
-{% url 'dashboard' as dashboard_url %}
-{% url 'realtime' as realtime_url %}
-{% url 'comparision-dashboard' as comparision_dashboard_url %}
-
-
+{% load static %} {% block content %} {% url 'dashboard' as dashboard_url %} {%
+url 'realtime' as realtime_url %} {% url 'comparision-dashboard' as
+comparision_dashboard_url %}
 
 <div class="kt-sideleft-header">
-      {% comment %} <div class="kt-logo"><a href="index.html">Magen IOT <small>Administrator</small></a></div> {% endcomment %}
-      <div class="kt-logo"><a href="{% url 'home' %}"><img class="" src="{% static 'images/logo-100.png' %}" style="width:100%; padding-top:20px;"></a></div>
-      <div id="ktDate" class="kt-date-today" style="margin-top:20px;">
+  {% comment %}
+  <div class="kt-logo">
+    <a href="index.html">Magen IOT <small>Administrator</small></a>
+  </div>
+  {% endcomment %}
+  <div class="kt-logo">
+    <a href="{% url 'home' %}"
+      ><img
+        class=""
+        src="{% static 'images/logo-100.png' %}"
+        style="width: 100%; padding-top: 20px"
+    /></a>
+  </div>
+  <div id="ktDate" class="kt-date-today" style="margin-top: 20px"></div>
+  <div class="input-group kt-input-search">
+    <input type="text" class="form-control" placeholder="Search..." />
+    <span class="input-group-btn mg-0">
+      <button class="btn"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
+  <!-- input-group -->
+</div>
+<!-- kt-sideleft-header -->
 
-      </div>
-      <div class="input-group kt-input-search">
-        <input type="text" class="form-control" placeholder="Search...">
-        <span class="input-group-btn mg-0">
-          <button class="btn"><i class="fa fa-search"></i></button>
-        </span>
-      </div><!-- input-group -->
-    </div><!-- kt-sideleft-header -->
+<!-- ##### SIDEBAR MENU ##### -->
+<div class="kt-sideleft">
+  <label class="kt-sidebar-label">Navigation</label>
+  <ul class="nav kt-sideleft-menu">
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a
+        href="{% url 'dashboard' %}"
+        class="nav-link {% if request.path == dashboard_url %} active {% endif %}"
+      >
+        <i class="icon ion-ios-home-outline"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
 
-    <!-- ##### SIDEBAR MENU ##### -->
-    <div class="kt-sideleft">
-      <label class="kt-sidebar-label">Navigation</label>
-      <ul class="nav kt-sideleft-menu">
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a
+        href="{% url 'realtime' %}"
+        class="nav-link {% if request.path == realtime_url %} active {% endif %}"
+      >
+        <i class="icon ion-ios-clock-outline"></i>
+        <span>Realtime</span>
+      </a>
+    </li>
 
-        <!-- nav-item -->
-        <li class="nav-item">
-          <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == dashboard_url %} active {% endif %}">
-            <i class="icon ion-ios-home-outline"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-
-        <!-- nav-item -->
-        <li class="nav-item">
-          <a href="{% url 'realtime' %}" class="nav-link {% if request.path == realtime_url %} active {% endif %}">
-            <i class="icon ion-ios-clock-outline"></i>
-            <span>Realtime</span>
-          </a>
-        </li>
-
-
-
-         <!-- nav-item -->
+    <!-- nav-item -->
+    <!--
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
             <i class="icon ion-ios-gear-outline"></i>
@@ -54,23 +64,42 @@
             <li class="nav-item"><a href="{% url 'comparision-dashboard' %}" class="nav-link {% if request.path == comparision_dashboard_url %} active {% endif %}">Comparision Dashboards</a></li>
           </ul>
         </li>
+        -->
 
-          <!-- nav-item -->
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a href="" class="nav-link with-sub">
+        <i class="icon ion-ios-gear-outline"></i>
+        <span>Goals</span>
+      </a>
+      <ul class="nav-sub">
         <li class="nav-item">
-          <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-gear-outline"></i>
-            <span>Goals</span>
-          </a>
-          <ul class="nav-sub">
-            <li class="nav-item"><a href="{% static 'dashboard/form-elements.html' %}" class="nav-link">Dashboards</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/form-layouts.html' %}" class="nav-link">Custom Reports</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/form-validation.html' %}" class="nav-link">Save Reports</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/form-wizards.html' %}" class="nav-link">Custom Alerts</a></li>
-          </ul>
+          <a href="{% static 'dashboard/form-elements.html' %}" class="nav-link"
+            >Dashboards</a
+          >
         </li>
-        
-        <!-- nav-item -->
-        <!--
+        <li class="nav-item">
+          <a href="{% static 'dashboard/form-layouts.html' %}" class="nav-link"
+            >Custom Reports</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            href="{% static 'dashboard/form-validation.html' %}"
+            class="nav-link"
+            >Save Reports</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="{% static 'dashboard/form-wizards.html' %}" class="nav-link"
+            >Custom Alerts</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <!-- nav-item -->
+    <!--
         <li class="nav-item">
           <a href="" class="nav-link with-sub">
             <i class="icon ion-ios-clock-outline"></i>
@@ -87,137 +116,242 @@
         </li>
           -->
 
-        
-        <!-- nav-item -->
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a href="" class="nav-link with-sub">
+        <i class="icon ion-ios-navigate-outline"></i>
+        <span>Acquisition</span>
+      </a>
+      <ul class="nav-sub">
         <li class="nav-item">
-          <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-navigate-outline"></i>
-            <span>Acquisition</span>
-          </a>
-          <ul class="nav-sub">
-            <li class="nav-item"><a href="{% static 'dashboard/map-google.html' %}" class="nav-link">Overview</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/map-vector.html' %}" class="nav-link">All Traffic</a></li>
-          </ul>
+          <a href="{% static 'dashboard/map-google.html' %}" class="nav-link"
+            >Overview</a
+          >
         </li>
-        
-        <!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-alarm-outline"></i>
-            <span>Alarms</span>
-          </a>
-          <ul class="nav-sub">
-            <li class="nav-item"><a href="{% static 'dashboard/table-datatable.html' %}" class="nav-link">Overview</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/table-basic.html' %}" class="nav-link">Behavior Flow</a></li>
-          </ul>
+          <a href="{% static 'dashboard/map-vector.html' %}" class="nav-link"
+            >All Traffic</a
+          >
         </li>
-        
-        <!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub">
-            <i class="icon ion-ios-search"></i>
-            <span>Referance</span>
-          </a>
-          <ul class="nav-sub">
-            <li class="nav-item"><a href="{% static 'dashboard/blank.html' %}" class="nav-link">Goals</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/mailbox.html' %}" class="nav-link">Ecommerce</a></li>
-            <li class="nav-item"><a href="{% static 'dashboard/chat.html' %}" class="nav-link">Multi-Channel Funnels</a></li>
-            </ul>
-        </li>
-      
       </ul>
-    </div><!-- kt-sideleft -->
+    </li>
 
-    <!-- ##### HEAD PANEL ##### -->
-    <div class="kt-headpanel">
-      <div class="kt-headpanel-left">
-        <a id="naviconMenu" href="" class="kt-navicon d-none d-lg-flex"><img src="{% static 'images/menu.svg' %}" width="30"/></a>
-        <a id="naviconMenuMobile" href="" class="kt-navicon d-lg-none"><i class="icon ion-navicon-round"></i></a>
-      </div><!-- kt-headpanel-left -->
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a href="" class="nav-link with-sub">
+        <i class="icon ion-ios-alarm-outline"></i>
+        <span>Alarms</span>
+      </a>
+      <ul class="nav-sub">
+        <li class="nav-item">
+          <a
+            href="{% static 'dashboard/table-datatable.html' %}"
+            class="nav-link"
+            >Overview</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="{% static 'dashboard/table-basic.html' %}" class="nav-link"
+            >Behavior Flow</a
+          >
+        </li>
+      </ul>
+    </li>
 
-      <div class="kt-headpanel-right">
-        <div class="dropdown dropdown-notification">
-          <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
-            <img src="{% static 'images/notification.svg' %}" height="24"/>
+    <!-- nav-item -->
+    <li class="nav-item">
+      <a href="" class="nav-link with-sub">
+        <i class="icon ion-ios-search"></i>
+        <span>Referance</span>
+      </a>
+      <ul class="nav-sub">
+        <li class="nav-item">
+          <a href="{% static 'dashboard/blank.html' %}" class="nav-link"
+            >Goals</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="{% static 'dashboard/mailbox.html' %}" class="nav-link"
+            >Ecommerce</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="{% static 'dashboard/chat.html' %}" class="nav-link"
+            >Multi-Channel Funnels</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!-- kt-sideleft -->
 
-            <!-- start: if statement -->
-            <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
-            <!-- end: if statement -->
-          </a>
-          <div class="dropdown-menu wd-300 pd-0-force">
-            <div class="dropdown-menu-header">
-              <label>Notifications</label>
-              <a href="">Mark All as Read</a>
-            </div><!-- d-flex -->
+<!-- ##### HEAD PANEL ##### -->
+<div class="kt-headpanel">
+  <div class="kt-headpanel-left">
+    <a id="naviconMenu" href="" class="kt-navicon d-none d-lg-flex"
+      ><img src="{% static 'images/menu.svg' %}" width="30"
+    /></a>
+    <a id="naviconMenuMobile" href="" class="kt-navicon d-lg-none"
+      ><i class="icon ion-navicon-round"></i
+    ></a>
+  </div>
+  <!-- kt-headpanel-left -->
 
-            <div class="media-list">
-              <!-- loop starts here -->
-              <a href="" class="media-list-link read">
-                <div class="media pd-x-20 pd-y-15">
-                  <img src="{% static 'images/img8.jpg' %}" class="wd-40 rounded-circle" alt="">
-                  <div class="media-body">
-                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                    <span class="tx-12">October 03, 2017 8:45am</span>
-                  </div>
-                </div><!-- media -->
-              </a>
-              <!-- loop ends here -->
-              <a href="" class="media-list-link read">
-                <div class="media pd-x-20 pd-y-15">
-                  <img src="{% static 'images/img9.jpg' %}" class="wd-40 rounded-circle" alt="">
-                  <div class="media-body">
-                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Mellisa Brown</strong> appreciated your work <strong class="tx-medium">The Social Network</strong></p>
-                    <span class="tx-12">October 02, 2017 12:44am</span>
-                  </div>
-                </div><!-- media -->
-              </a>
-              <a href="" class="media-list-link read">
-                <div class="media pd-x-20 pd-y-15">
-                  <img src="{% static 'images/img10.jpg' %}" class="wd-40 rounded-circle" alt="">
-                  <div class="media-body">
-                    <p class="tx-13 mg-b-0">20+ new items added are for sale in your <strong class="tx-medium">Sale Group</strong></p>
-                    <span class="tx-12">October 01, 2017 10:20pm</span>
-                  </div>
-                </div><!-- media -->
-              </a>
-              <a href="" class="media-list-link read">
-                <div class="media pd-x-20 pd-y-15">
-                  <img src="{% static 'images/img5.jpg' %}" class="wd-40 rounded-circle" alt="">
-                  <div class="media-body">
-                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium">Ronnie Mara</strong></p>
-                    <span class="tx-12">October 01, 2017 6:08pm</span>
-                  </div>
-                </div><!-- media -->
-              </a>
-              <div class="media-list-footer">
-                <a href="" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a>
+  <div class="kt-headpanel-right">
+    <div class="dropdown dropdown-notification">
+      <a href="" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
+        <img src="{% static 'images/notification.svg' %}" height="24" />
+
+        <!-- start: if statement -->
+        <span
+          class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"
+        ></span>
+        <!-- end: if statement -->
+      </a>
+      <div class="dropdown-menu wd-300 pd-0-force">
+        <div class="dropdown-menu-header">
+          <label>Notifications</label>
+          <a href="">Mark All as Read</a>
+        </div>
+        <!-- d-flex -->
+
+        <div class="media-list">
+          <!-- loop starts here -->
+          <a href="" class="media-list-link read">
+            <div class="media pd-x-20 pd-y-15">
+              <img
+                src="{% static 'images/img8.jpg' %}"
+                class="wd-40 rounded-circle"
+                alt=""
+              />
+              <div class="media-body">
+                <p class="tx-13 mg-b-0">
+                  <strong class="tx-medium">Suzzeth Bungaos</strong> tagged you
+                  and 18 others in a post.
+                </p>
+                <span class="tx-12">October 03, 2017 8:45am</span>
               </div>
-            </div><!-- media-list -->
-          </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
-        <div class="dropdown dropdown-profile">
-          <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-            <img src="{% static 'images/img3.jpg' %}" class="wd-32 rounded-circle" alt="">
-            <span class="logged-name"><span class="hidden-xs-down">{% if user.is_authenticated %}{{ user.username }}{% endif %}</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+            </div>
+            <!-- media -->
           </a>
-          <div class="dropdown-menu wd-200">
-            <ul class="list-unstyled user-profile-nav">
-              <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
-              <li><a href=""><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
-              <li><a href=""><i class="icon ion-android-notifications-none"></i> Notifications</a></li>
-              <li><a href="{% url 'logout' %}"><i class="icon ion-power"></i> Sign Out</a></li>
-            </ul>
-          </div><!-- dropdown-menu -->
-        </div><!-- dropdown -->
-      </div><!-- kt-headpanel-right -->
-    </div><!-- kt-headpanel -->
-    {% comment %}
-    <div class="kt-breadcrumb">
-      <nav class="breadcrumb">
-        <a class="breadcrumb-item" href="index.html">Celec</a>
-         <span class="breadcrumb-item active">Dashboard</span> 
-      </nav>
-    </div><!-- kt-breadcrumb -->
-    {% endcomment %}
-
-    {% endblock content %}                                                                                                                                                                                                          
+          <!-- loop ends here -->
+          <a href="" class="media-list-link read">
+            <div class="media pd-x-20 pd-y-15">
+              <img
+                src="{% static 'images/img9.jpg' %}"
+                class="wd-40 rounded-circle"
+                alt=""
+              />
+              <div class="media-body">
+                <p class="tx-13 mg-b-0">
+                  <strong class="tx-medium">Mellisa Brown</strong> appreciated
+                  your work
+                  <strong class="tx-medium">The Social Network</strong>
+                </p>
+                <span class="tx-12">October 02, 2017 12:44am</span>
+              </div>
+            </div>
+            <!-- media -->
+          </a>
+          <a href="" class="media-list-link read">
+            <div class="media pd-x-20 pd-y-15">
+              <img
+                src="{% static 'images/img10.jpg' %}"
+                class="wd-40 rounded-circle"
+                alt=""
+              />
+              <div class="media-body">
+                <p class="tx-13 mg-b-0">
+                  20+ new items added are for sale in your
+                  <strong class="tx-medium">Sale Group</strong>
+                </p>
+                <span class="tx-12">October 01, 2017 10:20pm</span>
+              </div>
+            </div>
+            <!-- media -->
+          </a>
+          <a href="" class="media-list-link read">
+            <div class="media pd-x-20 pd-y-15">
+              <img
+                src="{% static 'images/img5.jpg' %}"
+                class="wd-40 rounded-circle"
+                alt=""
+              />
+              <div class="media-body">
+                <p class="tx-13 mg-b-0">
+                  <strong class="tx-medium">Julius Erving</strong> wants to
+                  connect with you on your conversation with
+                  <strong class="tx-medium">Ronnie Mara</strong>
+                </p>
+                <span class="tx-12">October 01, 2017 6:08pm</span>
+              </div>
+            </div>
+            <!-- media -->
+          </a>
+          <div class="media-list-footer">
+            <a href="" class="tx-12"
+              ><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a
+            >
+          </div>
+        </div>
+        <!-- media-list -->
+      </div>
+      <!-- dropdown-menu -->
+    </div>
+    <!-- dropdown -->
+    <div class="dropdown dropdown-profile">
+      <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+        <img
+          src="{% static 'images/img3.jpg' %}"
+          class="wd-32 rounded-circle"
+          alt=""
+        />
+        <span class="logged-name"
+          ><span class="hidden-xs-down"
+            >{% if user.is_authenticated %}{{ user.username }}{% endif %}</span
+          >
+          <i class="fa fa-angle-down mg-l-3"></i
+        ></span>
+      </a>
+      <div class="dropdown-menu wd-200">
+        <ul class="list-unstyled user-profile-nav">
+          <li>
+            <a href=""
+              ><i class="icon ion-ios-person-outline"></i> Edit Profile</a
+            >
+          </li>
+          <li>
+            <a href="{{ object.get_setting_update_url }}"
+              ><i class="icon ion-ios-gear-outline"></i> Settings</a
+            >
+          </li>
+          <li>
+            <a href=""
+              ><i class="icon ion-android-notifications-none"></i>
+              Notifications</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'logout' %}"
+              ><i class="icon ion-power"></i> Sign Out</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- dropdown-menu -->
+    </div>
+    <!-- dropdown -->
+  </div>
+  <!-- kt-headpanel-right -->
+</div>
+<!-- kt-headpanel -->
+{% comment %}
+<div class="kt-breadcrumb">
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="index.html">Celec</a>
+    <span class="breadcrumb-item active">Dashboard</span>
+  </nav>
+</div>
+<!-- kt-breadcrumb -->
+{% endcomment %} {% endblock content %}

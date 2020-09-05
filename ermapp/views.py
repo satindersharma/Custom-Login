@@ -28,7 +28,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
 from .utils import daily_data, weekly_data, monthly_data, yearly_data
-
+from profiles.models import Setting
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -150,6 +150,15 @@ class RealtimeChartView(TemplateView):
 
 
 def get_data(request, *args, **kwargs):
+    # dd = request.GET.get('q')
+    # ddd = request.GET.get('p')
+    # print(dd)
+    # print(ddd)
+    req_time = Setting.objects.get(user=request.user)
+    print(req_time.default_hour)
+    print(req_time.default_Week_start_day)
+    print(req_time.default_month)
+    print(req_time.default_year)
     data = {'daily': daily_data(),
             'weekly': weekly_data(),
             'monthly': monthly_data(),

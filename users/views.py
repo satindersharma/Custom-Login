@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, View
+# from django.views.generic import DetailView
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from CelecUserProject.mixins import NextUrlMixin
@@ -10,7 +11,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView, LogoutView, TemplateView, PasswordResetView
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from profiles.models import Setting
 
 '''
 
@@ -40,7 +41,18 @@ def signup(request):
 
 
 class DashboardView(TemplateView):
+    # model = Setting
     template_name = "dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['object'] = Setting.objects.get(user=self.request.user)
+        return context
+
+
+
 
 class ComparisionDashboardView(TemplateView):
     template_name = "comparision-dashboard.html"

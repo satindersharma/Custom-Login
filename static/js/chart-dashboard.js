@@ -2,7 +2,7 @@ var endpoint = "/api/data/";
 var Data = [];
 var chartCreated = [];
 var saving_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -41,6 +41,10 @@ var saving_config = {
           ticks: {
             display: true,
             autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,,
           },
           time: {
             unit: "",
@@ -48,7 +52,7 @@ var saving_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -72,7 +76,7 @@ var saving_config = {
 };
 
 var usage_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -110,6 +114,11 @@ var usage_config = {
           type: "time",
           ticks: {
             display: true,
+            autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,
           },
           time: {
             unit: "",
@@ -117,7 +126,7 @@ var usage_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -141,7 +150,7 @@ var usage_config = {
   },
 };
 var energy_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -179,6 +188,11 @@ var energy_config = {
           type: "time",
           ticks: {
             display: true,
+            autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,
           },
           time: {
             unit: "",
@@ -186,7 +200,7 @@ var energy_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -210,7 +224,7 @@ var energy_config = {
   },
 };
 var power_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -248,6 +262,11 @@ var power_config = {
           type: "time",
           ticks: {
             display: true,
+            autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,
           },
           time: {
             unit: "",
@@ -255,7 +274,7 @@ var power_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -279,7 +298,7 @@ var power_config = {
 };
 
 var thd_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -317,6 +336,11 @@ var thd_config = {
           type: "time",
           ticks: {
             display: true,
+            autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,
           },
           time: {
             unit: "",
@@ -324,7 +348,7 @@ var thd_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -349,7 +373,7 @@ var thd_config = {
 };
 
 var tdi_config = {
-  type: "line",
+  type: "",
   data: {
     labels: [],
     datasets: [
@@ -387,6 +411,11 @@ var tdi_config = {
           type: "time",
           ticks: {
             display: true,
+            autoSkip: false,
+            fontSize: 12,
+            maxRotation: 80,
+            minRotation: 0,
+            // padding: 1,
           },
           time: {
             unit: "",
@@ -394,7 +423,7 @@ var tdi_config = {
               millisecond: "h:mm:ss.SSS a",
               second: "D MMM",
               minute: "ddd D MMM",
-              hour: "ddd D MMM hA",
+              hour: "ddd hA",
               day: "ddd MMM D",
               week: "ll",
               month: "MMM YYYY",
@@ -506,9 +535,10 @@ async function showchartdata(t = "daily") {
     u.options.scales.xAxes[0].time.unit = "";
     // console.log(u.data.labels.length);
     u.data.labels.splice(0, u.data.labels.length);
-    
+
     u.data.datasets.forEach((dataset) => {
       dataset.data.splice(0, dataset.data.length);
+      dataset.backgroundColor = "";
       // console.log(x)
       // dataset.label = `${d_type} dataset`;
     });
@@ -535,15 +565,25 @@ async function showchartdata(t = "daily") {
       }
       // console.log(d_type);
       d_type == "weekly"
-        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "day"),(u.data.datasets[0].backgroundColor = window.chartColors.lightergreen),
-        (u.data.datasets[0].borderColor = window.chartColors.lightergreen))
+        ? ((u.type = "bar"),
+          (u.options.scales.xAxes[0].time.unit = "day"),
+          (u.data.datasets[0].backgroundColor =
+            window.chartColors.lightergreen),
+          (u.data.datasets[0].borderColor = window.chartColors.lightergreen))
         : d_type == "monthly"
-        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "day"),(u.data.datasets[0].backgroundColor = window.chartColors.bluegreen),
+        ? ((u.type = "bar"),
+          (u.options.scales.xAxes[0].time.unit = "day"),
+          (u.data.datasets[0].backgroundColor = window.chartColors.bluegreen),
           (u.data.datasets[0].borderColor = window.chartColors.bluegreen))
         : d_type == "yearly"
-        ? ((u.type = "bar"), (u.options.scales.xAxes[0].time.unit = "month"),(u.data.datasets[0].backgroundColor = window.chartColors.cyan),
-        (u.data.datasets[0].borderColor = window.chartColors.cyan))
-        : ((u.type = "line"), (u.options.scales.xAxes[0].time.unit = "hour"));
+        ? ((u.type = "bar"),
+          (u.options.scales.xAxes[0].time.unit = "month"),
+          (u.data.datasets[0].backgroundColor = window.chartColors.cyan),
+          (u.data.datasets[0].borderColor = window.chartColors.cyan))
+        : ((u.type = "line"),
+          (u.options.scales.xAxes[0].time.unit = "hour"),
+          (u.data.datasets[0].backgroundColor = window.chartColors.red),
+          (u.data.datasets[0].borderColor = window.chartColors.red));
 
       window.dashline[v] = new Chart(combinectx[v], u);
     }
@@ -552,6 +592,26 @@ async function showchartdata(t = "daily") {
     // }
   });
 }
+
+// Date Time Picker Initialization 
+$(".start-date").datepicker({ dateFormat: "yy-mm-dd" });
+$(".start-time").timepicker();
+$(".end-date").datepicker({ dateFormat: "yy-mm-dd" });
+$(".end-time").timepicker();
+
+var compare_btn = document.getElementById("compare-btn");
+
+compare_btn.addEventListener('click',()=>{
+  var start_date = $(".start-date").datepicker({ dateFormat: "yy-mm-dd" });
+  var start_time = $(".start-time").timepicker({ timeFormat: 'HH:mm:ss'});
+  var end_date = $(".end-date").datepicker({ dateFormat: "yy-mm-dd" });
+  var end_time = $(".end-time").timepicker({ timeFormat: 'HH:mm:ss'});
+  console.log(start_date.val())
+  console.log(start_time.val())
+  console.log(end_date.val())
+  console.log(end_time.val())
+})
+
 
 // function clearchart
 $(document).ready(function () {

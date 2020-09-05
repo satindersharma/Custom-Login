@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'ermapp',
+    'profiles',
     'rest_framework',
     'django_filters',
+    'crispy_forms',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'  # new

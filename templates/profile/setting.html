@@ -1,0 +1,25 @@
+{% extends 'home.html' %} {% load static %} {% load crispy_forms_tags %} 
+{%block content %} {% include "base/navbar.html" %}
+<!-- ##### MAIN PANEL ##### -->
+<div class="kt-mainpanel">
+  <div class="kt-pagebody">
+    <div class="row row-sm">
+      <div class="col-lg-12">
+        <div class="row row-sm">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card m-4" style="padding:50px">
+              <form method="post" style="margin: 0 auto">
+
+                {% csrf_token %} {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary shadow-none btn-sm">update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- kt-mainpanel -->
+{% endblock content %}

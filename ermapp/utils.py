@@ -7,7 +7,7 @@ import os
 from django.utils import timezone
 from django.db.models import Avg, Max, Min, Count, F, ExpressionWrapper, DecimalField
 from ermapp.models import S1902000403, DashboardTable
-
+from profiles.models import Setting
 
 def daily_data():
     now = timezone.now()
@@ -65,7 +65,7 @@ def yearly_data():
     req_list = []
     req_query = DashboardTable.objects.filter(date_time__year=now.year)
 
-    for mon_num in range(1, now.month):
+    for mon_num in range(1, now.month+1):
         time_dict = {"time": str(datetime(now.year, mon_num, 1))}
         rerr = req_query.filter(date_time__month=mon_num).aggregate(Avg('saving'), Avg(
             'usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))

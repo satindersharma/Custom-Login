@@ -18,7 +18,7 @@ from ermapp.models import S1902000403, DashboardTable
 if you get DJANGO_SETTINGS_MODULE
 the import your model after os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CelecUserProject.settings')
 '''
-
+'''
 one_day_ago = timezone.now() - timedelta(days=1)
 # day_ago = timezone.now() - timedelta(days=1)
 # today = datetime.today()
@@ -37,7 +37,7 @@ resnow1 = DashboardTable.objects.filter(date_time__gte=timezone.now(
 # resnow = DashboardTable.objects.values(date_time__gte=Now()).aggregate(Avg(energ = 'energy',power = 'power_factor'), Max('energy'), Min('energy'))
 result = DashboardTable.objects.filter(date_time__gte=(timezone.now(
 ) - timedelta(days=7))).annotate(average=ExpressionWrapper(F('date_time')/7, output_field=DecimalField())).aggregate(Avg('energy'), Max('energy'), Min('energy'))
-
+'''
 # print(len(resnow))
 # print(resnow[0].ene_avg)
 # print(resnow)
@@ -47,7 +47,7 @@ result = DashboardTable.objects.filter(date_time__gte=(timezone.now(
 #     print(xx.energy)
 
 
-def daily_data():
+def daily_data(klass=None,date_field_name=None,start_time=None,end_time=None,default_start=None):
     now = timezone.now()
     # time_24_hours_ago = timezone.now() - timedelta(days=1)
     # required_time = time_24_hours_ago - timedelta(hours=1)
@@ -148,8 +148,12 @@ def yearly_data():
 
 # daily_data()
 # weekly_data()
-monthly_data()
+# monthly_data()
 # yearly_data()
+ppp = timezone.now().year
+ktk = [(ppp-x,ppp-x) for x in range(10)]
+print(ktk)
+
 
 '''
 articles = metrics_models.Article.objects.filter(

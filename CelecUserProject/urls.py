@@ -25,4 +25,5 @@ urlpatterns = [
          name='terms-and-condition-page'),
     path('', include('users.urls')),
     path('', include('ermapp.urls')),
+    path('', include('profiles.urls')),
 ]

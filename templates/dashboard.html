@@ -5,33 +5,49 @@
     <!-- ##### MAIN PANEL ##### -->
     <div class="kt-mainpanel">
       <div class="kt-pagetitle">
-      <div class="col-lg-2">
-                <div class="form-group mg-b-10-force">
-                  <select class="form-control select2" data-placeholder="Select Device" id="dropdown-select-dashboard">
-                    <option label="Choose Duration"></option>
-                    <option value="Daily" selected>Daily</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Yearly">Yearly</option>
+        <div class="col-lg-2">
+                  <select class="form-control  select2" data-placeholder="Select Device" id="dropdown-select-dashboard">
+                    {% comment %} <option label="Choose Duration"></option> {% endcomment %}
+                    <option value="daily" selected>Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
                   </select>
-                </div>
-              </div>
-        <div class="col-lg-1">
-          <h5>Dashboard</h5>
-          </div>
-          <div class="col-lg-1">
-          <h5>Device</h5>
-          </div>
+        </div>
+        
+
+
+        <div class="col-lg-5 date-compare">
+        {% comment %}
+           <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input " id="id_comparision" name="comparision" {% if form.allow_comment.value %}checked{% endif %}>
+              <label class="custom-control-label" for="id_comparision" >comparision</label>
+               <label class="custom-control-label" for="id_allow_comment" >comparision</label> 
+            </div>
+            {% endcomment %}
+              <input placeholder="Start Date" type="text" class="form-control start-date picker-opener">
+              <input placeholder="Start Time" type="text" class="form-control start-time picker-opener">
+              <input placeholder="End Date" type="text" class="form-control end-date picker-opener">
+              <input placeholder="End Time" type="text" class="form-control end-time picker-opener">
+              <button type="button" class="btn btn-outline-dark btn-sm shadow-none" id="compare-btn">compare</button>
+        </div>
+
+        <div class="col-lg-2 text-center">
+          <h2></h2>
+        </div> 
+
+
+
               <div class="col-lg-2">
-                <div class="form-group mg-b-10-force">
+
                   <select class="form-control select2" data-placeholder="Select Device">
-                    <option label="Choose Device"></option>
+                    {% comment %} <option label="Choose Device"></option> {% endcomment %}
                     <option value="USA" selected>Device 1</option>
                     <option value="UK">Device 2</option>
                     <option value="China">Device 3</option>
                     <option value="Japan">Device 4</option>
                   </select>
-                </div>
+
               </div
               ><!-- col-4 -->
 

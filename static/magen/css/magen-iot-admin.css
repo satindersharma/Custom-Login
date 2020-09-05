@@ -9799,12 +9799,12 @@ textarea.parsley-success:focus {
   background-color: #fff;
   padding: 0 15px; 
   align-content: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 
 
-  .kt-pagetitle h5 {
+  .kt-pagetitle h5, .kt-pagetitle h3, .kt-pagetitle h2 {
     color: #343a40;
     margin-bottom: 2px; }
 
