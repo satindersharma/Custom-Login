@@ -12,7 +12,8 @@ from django.contrib.auth.views import LoginView, LogoutView, TemplateView, Passw
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from profiles.models import Setting
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.mixins import LoginRequiredMixin
 '''
 
 192.168.0.221
@@ -40,7 +41,7 @@ def signup(request):
 '''
 
 
-class DashboardView(TemplateView):
+class DashboardView(LoginRequiredMixin,TemplateView):
     # model = Setting
     template_name = "dashboard.html"
 
@@ -48,10 +49,13 @@ class DashboardView(TemplateView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['object'] = Setting.objects.get(user=self.request.user)
+        try:
+            get_set_user = Setting.objects.get(user=self.request.user)
+            if get_set_user:
+                context['object'] = get_set_user
+        except ObjectDoesNotExist:
+            pass
         return context
-
-
 
 
 class ComparisionDashboardView(TemplateView):

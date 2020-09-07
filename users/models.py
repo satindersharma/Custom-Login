@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
+'''
+delete migrations folder
+python manage.py makemigrations profiles
+python manage.py migrate --fake profiles zero
+python manage.py migrate profiles
+'''
+
 
 class CustomUser(AbstractUser):
 
@@ -78,3 +85,5 @@ class CustomUser(AbstractUser):
 
 #     class Meta:
 #         db_table = "user_role"
+
+

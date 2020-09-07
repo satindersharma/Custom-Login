@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, FormView, View
 from django.http import (Http404, HttpResponse, HttpResponseRedirect,
                          JsonResponse)
+from django.db.models import Avg
 # Create your views here.
 # pip install --only-binary :all: mysqlclient
 # S1902000403
@@ -20,7 +21,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import S1902000403, DashboardTable
 from ermapp.serializers import ProductSerializer, ExProductSerializer, DashboardTableSerializer, DashSerializer
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveAPIView
 from django.views.generic import View
 from django.shortcuts import get_object_or_404
 from .filters import CustomFilter, DashboardTableCustomFilter
@@ -29,6 +30,7 @@ from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
 from .utils import daily_data, weekly_data, monthly_data, yearly_data
 from profiles.models import Setting
+
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -67,12 +69,12 @@ class ProductLastAPIView(APIView):
 
 
 class DashLilstAPIView(ListAPIView):
-    queryset = DashboardTable.objects.all()
+    queryset = DashboardTable.objects.all().order_by("date_time")
     serializer_class = DashboardTableSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = DashboardTableCustomFilter
     filterset_fields = ['date_time']
-    # ordering_fields = ['date_time', 'srl']
+    # ordering_fields = ['date_time']
     # filterset_class = CustomFilter
     ordering = ['date_time']
 
@@ -86,19 +88,13 @@ class DashLilstAPIView(ListAPIView):
 
         for backend in list(filter_backends):
             queryset = backend().filter_queryset(self.request, queryset, view=self)
-        # print('wala')
-        # print(queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi')))
-        # queryset = queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
-        # tt = queryset.aggregate(Avg('saving'), Avg('usage'), Avg('energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
-        # print(tt)
-        # return JsonResponse(tt,safe=False)
         return queryset
 
 
 class ProductLilstAPIView(ListAPIView):
     queryset = S1902000403.objects.all()
     serializer_class = ProductSerializer
-    # filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
     filterset_class = CustomFilter
     filterset_fields = ['date_time', 'srl']
     # ordering_fields = ['date_time', 'srl']
@@ -149,16 +145,96 @@ class RealtimeChartView(TemplateView):
     template_name = 'Realtime-chart.html'
 
 
+class DashChartAPIView(ListAPIView):
+    # lookup_field = 'id'
+    queryset = DashboardTable.objects.all().order_by("date_time")
+    serializer_class = DashboardTableSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = DashboardTableCustomFilter
+    filterset_fields = ['date_time']
+    # ordering_fields = ['date_time']
+    # filterset_class = CustomFilter
+    ordering = ['date_time']
+
+    def get(self, request, format=None):
+
+        r_hour = request.GET.get('hour')
+        r_day = request.GET.get('day')
+        r_week = request.GET.get('week')
+        r_month = request.GET.get('month')
+        r_year = request.GET.get('year')
+        r_date_range_after = request.GET.get('date_range_after')
+        r_date_range_before = request.GET.get('date_range_before')
+        r_date_filter = request.GET.get('date_filter')
+        print(r_hour)
+        print(r_day)
+        print(r_week)
+        print(r_month)
+        print(r_year)
+        print(r_date_range_after)
+        print(r_date_range_before)
+        print(r_date_filter)
+        req_time = Setting.objects.get(user=request.user)
+        print(req_time.default_hour)
+        print(req_time.default_Week_start_day)
+
+        # queryset = DashboardTable.objects.all()
+        filter_backends = [DjangoFilterBackend]
+
+        if 'geo_route' in self.request.query_params:
+            filter_backends = [GeoRouteFilter, DjangoFilterBackend]
+        elif 'geo_point' in self.request.query_params:
+            filter_backends = [GeoPointFilter, DjangoFilterBackend]
+
+        for backend in list(filter_backends):
+            queryset = backend().filter_queryset(self.request, self.queryset, view=self)
+
+        print("lenght of qury", queryset[0].date_time)
+        print("lenght of qury", len(queryset))
+        queryset = queryset.aggregate(Avg('saving'), Avg('usage'), Avg(
+            'energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
+
+        return Response(queryset)
+
+
 def get_data(request, *args, **kwargs):
     # dd = request.GET.get('q')
     # ddd = request.GET.get('p')
     # print(dd)
     # print(ddd)
+    # k = DjangoFilterBackend.filter_queryset(request=
+    #     request.GET, queryset=DashboardTable.objects.all(),view=get_data)
+    # k = DashboardTableCustomFilter(
+    #     data=request.GET, queryset=DashboardTable.objects.all())
+    # # dash/?hour=&day=&week=&month=&year=&date_range_after=&date_range_before=&date_filter=today
+    # print("this is k ", k.queryset)
+    # print(len(k.queryset))
+    # re_p = k.queryset.aggregate(Avg('saving'), Avg('usage'), Avg(
+    #     'energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
+    # print("this is k ", re_p)
+
+    r_day = request.GET.get('day')
+    r_week = request.GET.get('week')
+    r_month = request.GET.get('month')
+    r_year = request.GET.get('year')
+    r_date_range_after = request.GET.get('date_range_after')
+    r_date_range_before = request.GET.get('date_range_before')
+    r_date_filter = request.GET.get('date_filter')
+    print(r_day)
+    print(r_week)
+    print(r_month)
+    print(r_year)
+    print(r_date_range_after)
+    print(r_date_range_before)
+    print(r_date_filter)
+
+    # print(dir(DashboardTableCustomFilter()))
     req_time = Setting.objects.get(user=request.user)
     print(req_time.default_hour)
     print(req_time.default_Week_start_day)
-    print(req_time.default_month)
-    print(req_time.default_year)
+    # print(req_time.default_month)
+    # print(req_time.default_year)
+
     data = {'daily': daily_data(),
             'weekly': weekly_data(),
             'monthly': monthly_data(),

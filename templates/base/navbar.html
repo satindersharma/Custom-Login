@@ -322,7 +322,12 @@ comparision_dashboard_url %}
             >
           </li>
           <li>
-            <a href="{{ object.get_setting_update_url }}"
+          
+          
+          
+
+          
+            <a href="{% if object %} {{ object.get_setting_update_url }} {% else %} {% url 'settings' %} {% endif %}"
               ><i class="icon ion-ios-gear-outline"></i> Settings</a
             >
           </li>

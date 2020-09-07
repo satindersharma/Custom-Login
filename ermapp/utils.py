@@ -10,6 +10,7 @@ from ermapp.models import S1902000403, DashboardTable
 from profiles.models import Setting
 
 def daily_data():
+    
     now = timezone.now()
     time_24_hours_ago = timezone.now() - timedelta(days=1)
     req_query = DashboardTable.objects.filter(date_time__gte=time_24_hours_ago)

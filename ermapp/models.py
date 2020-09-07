@@ -87,6 +87,7 @@ class S1902000403(models.Model):
     class Meta:
         db_table = 'S_19020004_03'
         get_latest_by = 'srl'
+        ordering = ['-date_time']
 
 
 class DashboardTable(models.Model):
