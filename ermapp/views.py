@@ -28,7 +28,7 @@ from .filters import CustomFilter, DashboardTableCustomFilter
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from django.http import JsonResponse
-from .utils import daily_data, weekly_data, monthly_data, yearly_data
+from .utils import today_data, yesterday_data, weekly_data, monthly_data, yearly_data, last_weekly_data, last_month_data, all_time_data
 from profiles.models import Setting
 
 
@@ -174,9 +174,9 @@ class DashChartAPIView(ListAPIView):
         print(r_date_range_after)
         print(r_date_range_before)
         print(r_date_filter)
-        req_time = Setting.objects.get(user=request.user)
-        print(req_time.default_hour)
-        print(req_time.default_Week_start_day)
+        # req_time = Setting.objects.get(user=request.user)
+        # print(req_time.default_hour)
+        # print(req_time.default_Week_start_day)
 
         # queryset = DashboardTable.objects.all()
         filter_backends = [DjangoFilterBackend]
@@ -191,10 +191,16 @@ class DashChartAPIView(ListAPIView):
 
         print("lenght of qury", queryset[0].date_time)
         print("lenght of qury", len(queryset))
+        # ‘%d %H:%M:%S.%f’
         queryset = queryset.aggregate(Avg('saving'), Avg('usage'), Avg(
             'energy'), Avg('power_factor'), Avg('thd'), Avg('tdi'))
-
-        return Response(queryset)
+        data = {'daily': 'daily_data()',
+                'weekly': 'weekly_data()',
+                'monthly': 'monthly_data()',
+                'yearly': 'yearly_data()'
+                }
+        queryset = data
+        return Response(data)
 
 
 def get_data(request, *args, **kwargs):
@@ -229,17 +235,37 @@ def get_data(request, *args, **kwargs):
     print(r_date_filter)
 
     # print(dir(DashboardTableCustomFilter()))
-    req_time = Setting.objects.get(user=request.user)
-    print(req_time.default_hour)
-    print(req_time.default_Week_start_day)
+    # req_time = Setting.objects.get_or_create(user=request.user)
+    # print(req_time.default_hour)
+    # print(req_time.default_Week_start_day)
     # print(req_time.default_month)
     # print(req_time.default_year)
+    # default_hour = None
+    # default_Week_start_day = None
+    try:
+        default_hour = Setting.objects.get(user=request.user).default_hour
+        default_Week_start_day = Setting.objects.get(
+            user=request.user).default_Week_start_day
+            
+        data = {'today': today_data(r_hour=default_hour-1),
+                'yesterday': yesterday_data(r_hour=default_hour-1),
+                'this-week': weekly_data(),
+                'last-week': last_weekly_data(),
+                'this-month': monthly_data(),
+                'last-month': last_month_data(),
+                'all-time': all_time_data()
+                }
 
-    data = {'daily': daily_data(),
-            'weekly': weekly_data(),
-            'monthly': monthly_data(),
-            'yearly': yearly_data()
-            }
+    except:
+        data = {'today': today_data(),
+                'yesterday': yesterday_data(),
+                'this-week': weekly_data(),
+                'last-week': last_weekly_data(),
+                'this-month': monthly_data(),
+                'last-month': last_month_data(),
+                'all-time': all_time_data()
+                }
+
     return JsonResponse(data)  # http response
 
 

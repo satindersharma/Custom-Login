@@ -26,8 +26,10 @@ class DashboardTableCustomFilter(django_filters.FilterSet):
         field_name='date_time', lookup_expr='year', label='enter year')
     date_range = django_filters.DateFromToRangeFilter(
         field_name='date_time', label='enter date range')
-    date_filter = django_filters.DateRangeFilter(
-        field_name='date_time', label='date choice', empty_label='choose range')
+    specific_date = django_filters.DateFilter(
+        field_name='date_time', label='specific date')
+    specific_time = django_filters.TimeFilter(field_name='date_time', label='specific time')
+    date_filter = django_filters.DateRangeFilter(field_name='date_time', label='date choice', empty_label='choose range')
 
     class Meta:
         model = DashboardTable

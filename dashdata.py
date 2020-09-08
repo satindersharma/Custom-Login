@@ -19,7 +19,7 @@ def random_data(ne=100, es=3):
         data = {
             # "date_time": f.date_time_this_century(before_now=True, after_now=False, tzinfo=None),
             # "date_time": timezone.now(), 
-            "date_time": f.past_datetime(start_date='-0d', tzinfo=None), # '-30d' for last 30 day data '-0d' means today
+            "date_time": f.past_datetime(start_date='-0d', tzinfo=None), # '-30d' for last 30 day data '-0d' means today '-1d' means from yesterday to today
             # "date_time": f.date_time_this_year(before_now=True, after_now=False, tzinfo=None),
             "saving": random.randrange(0, 101),
             "usage": random.randrange(0, 101),

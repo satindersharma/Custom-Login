@@ -98,6 +98,7 @@ def weekly_data():
     req_query = DashboardTable.objects.filter(date_time__gte=time_7_days_ago)
     print(len(req_query))
     required_time = time_7_days_ago.replace(minute=0, second=0, microsecond=0)
+    # print("week day", required_time.weekday())
     req_list = []
     required_now = now.replace(minute=0, second=0, microsecond=0)
     while required_time < required_now:
@@ -163,7 +164,7 @@ def yearly_data():
 
 
 # daily_data()
-# weekly_data()
+weekly_data()
 # monthly_data()
 # yearly_data()
 ppp = timezone.now().year
