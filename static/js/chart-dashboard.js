@@ -621,6 +621,7 @@ compare_btn.addEventListener("click", () => {
   console.log(start_time.val());
   console.log(end_date.val());
   console.log(end_time.val());
+  fetchdata(event.vlaue);
 });
 
 // function clearchart

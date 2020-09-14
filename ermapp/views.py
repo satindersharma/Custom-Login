@@ -8,7 +8,10 @@ from django.db.models import Avg
 # pip install --only-binary :all: mysqlclient
 # S1902000403
 # python manage.py dumpdata ConnectWithMYSQL.S1902000403 --indent 4 > fixtures/table_data.json
+
 # python manage.py loaddata fixtures/table_data.json --app connectwithserver.S1902000403
+
+
 # python manage.py dumpdata ConnectWithMYSQL.S1902000403 --indent 4 > table_data.json
 # after dowloading json  replace the model identifier in json file
 # python manage.py loaddata table_data.json --app ermapp.S1902000403
